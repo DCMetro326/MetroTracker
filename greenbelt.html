@@ -6,6 +6,16 @@
 <style>
     body {
         font-family: Arial, sans-serif;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;   /* center horizontally */
+        align-items: center;       /* center vertically */
+        background: #f7f7f7;
+    }
+
+    /* Wrap the grid so we can center this box */
+    .grid-wrapper {
         padding: 20px;
     }
 
@@ -34,9 +44,11 @@
 </head>
 <body>
 
-<h2>16 × 8 Grid (5:3 Rotated → 3:5 Rectangles)</h2>
+<h2>Greenbelt Yard</h2>
 
-<div class="container" id="grid"></div>
+<div class="grid-wrapper">
+    <div class="container" id="grid"></div>
+</div>
 
 <script>
     const grid = document.getElementById("grid");

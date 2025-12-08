@@ -1,22 +1,23 @@
 const grid = document.getElementById("grid");
+const rowMap = {};   // rowMap[trackNumber] = [cells/spacers...]
 
-// Store rows so the train assignment function can find them
-const rowMap = {};   // rowMap[trackNumber] = array of cell elements
+// ------------------------------------------
+// BUILD THE GRID
+// ------------------------------------------
 
-// Adds a row with N right-aligned visible cells
 function addRowRightAligned(cellCount, rowNumber) {
     const cells = [];
 
-    // Invisible left spacers
+    // Left spacers (invisible)
     const leftSpacerCount = 8 - cellCount;
     for (let i = 0; i < leftSpacerCount; i++) {
         const spacer = document.createElement("div");
         spacer.className = "spacer";
         grid.appendChild(spacer);
-        cells.push(spacer); // still keep in array for indexing
+        cells.push(spacer);
     }
 
-    // Real visible cells
+    // Visible rectangles
     for (let i = 0; i < cellCount; i++) {
         const cell = document.createElement("div");
         cell.className = "cell";
@@ -33,39 +34,89 @@ function addRowRightAligned(cellCount, rowNumber) {
     rowMap[rowNumber] = cells;
 }
 
-// ----- BUILD ROWS -----
-
-// New special rows (top)
+// Special rows
 addRowRightAligned(4, 20);
 addRowRightAligned(5, 19);
 addRowRightAligned(5, 18);
 addRowRightAligned(3, 17);
 
-// Main rows
+// 16 → 1 rows
 for (let r = 16; r >= 1; r--) {
     addRowRightAligned(8, r);
 }
 
-// ----- FUNCTION TO ASSIGN TRAINS -----
 
-function assignTrainToTrack(trainNumber, trackNumber) {
-    const row = rowMap[trackNumber];
-    if (!row) {
-        console.error("Track", trackNumber, "not found.");
-        return;
-    }
+// ------------------------------------------
+// FUNCTION: Assign a string into rightmost empty cell
+// ------------------------------------------
+function assignTrainToTrack(text, trackNumber) {
+    const cells = rowMap[trackNumber];
+    if (!cells) return;
 
-    // find the rightmost empty real cell
-    for (let i = row.length - 1; i >= 0; i--) {
-        let cell = row[i];
-        if (cell.classList.contains("cell") && cell.textContent.trim() === "") {
-            cell.textContent = trainNumber;
+    // Search from the rightmost end
+    for (let i = cells.length - 1; i >= 0; i--) {
+        const c = cells[i];
+        if (c.classList.contains("cell") && c.textContent.trim() === "") {
+            c.textContent = text;
             return;
         }
     }
 
-    console.warn("No empty rectangles available in track", trackNumber);
+    console.warn("Track", trackNumber, "has no empty rectangles left.");
 }
 
-// ----- TEST CALL -----
-assignTrainToTrack("3140-3141", 20);
+
+// ------------------------------------------
+// FUNCTION: Load remote yard file
+// ------------------------------------------
+
+async function loadYardData() {
+    try {
+        const res = await fetch("https://gis.wmata.com/proxy/proxy.ashx?https://gispro.wmata.com/RpmSpecialTrains/api/SpcialTrain");
+        const rawText = await res.text();
+
+        // Parse JSON-like text (it *is* JSON)
+        const data = JSON.parse(rawText);
+
+        const consists =
+            data?.DataTable?.["diffgr:diffgram"]?.DocumentElement?.CurrentConsists;
+
+        if (!consists) {
+            console.error("Could not locate CurrentConsists section.");
+            return;
+        }
+
+        // Loop through each consist
+        for (const item of consists) {
+            if (item.LocationName?.trim() !== "Greenbelt Yard")
+                continue;
+
+            let trackName = item.TrackName?.trim();
+            if (!trackName) continue;
+
+            // TrackName is "04", "15", etc.
+            let trackNumber = parseInt(trackName, 10);
+            if (isNaN(trackNumber)) continue;
+
+            let cars = item.Cars?.trim();
+            if (!cars) continue;
+
+            // Split cars by periods
+            let carSegments = cars.split(".");
+
+            // Place into rightmost slots
+            for (const segment of carSegments) {
+                assignTrainToTrack(segment, trackNumber);
+            }
+        }
+
+    } catch (err) {
+        console.error("Error loading yard file:", err);
+    }
+}
+
+
+// ------------------------------------------
+// AUTO-LOAD THE REMOTE FILE
+// ------------------------------------------
+loadYardData();

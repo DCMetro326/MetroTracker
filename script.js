@@ -76,7 +76,7 @@ function assignTrainToTrack(text, trackNumber) {
 // ----------------------------------------------------
 async function loadYardData() {
     try {
-        const res = await fetch("LINK_HERE");
+        const res = await fetch("https://gis.wmata.com/proxy/proxy.ashx?https://gispro.wmata.com/RpmSpecialTrains/api/SpcialTrain");
         const rawText = await res.text();
         const data = JSON.parse(rawText);
 

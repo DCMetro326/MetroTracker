@@ -2,36 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>16x8 Grid with Row Numbers</title>
+<title>16x8 Grid Rotated 5:3 Rectangles</title>
 <style>
     body {
         font-family: Arial, sans-serif;
         padding: 20px;
     }
 
+    /* Grid layout: 8 columns + 1 column for the row numbers */
     .container {
         display: grid;
-        grid-template-columns: repeat(9, auto); /* 8 boxes + number column */
-        gap: 8px;
+        grid-template-columns: repeat(8, auto) 40px;
+        column-gap: 4px;   /* very small gap between columns */
+        row-gap: 12px;     /* slightly larger gap between rows */
         align-items: center;
+    }
+
+    .cell {
+        width: 60px;       /* 3:5 aspect ratio → height = width * (5/3) */
+        height: 100px;
+        border: 2px solid black;
+        box-sizing: border-box;
     }
 
     .row-number {
         font-size: 18px;
-        padding-left: 10px;
-    }
-
-    .cell {
-        width: 75px;        /* 3:4 proportion → height = width * (4/3) */
-        height: 100px;
-        border: 2px solid black;
-        box-sizing: border-box;
+        text-align: left;
+        padding-left: 6px;
     }
 </style>
 </head>
 <body>
 
-<h2>16 × 8 Grid of 3:4 Rectangles</h2>
+<h2>16 × 8 Grid (5:3 Rotated → 3:5 Rectangles)</h2>
 
 <div class="container" id="grid"></div>
 
@@ -53,4 +56,3 @@
 
 </body>
 </html>
-

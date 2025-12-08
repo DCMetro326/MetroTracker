@@ -28,6 +28,12 @@
         align-items: center;
     }
 
+    .spacer {
+        width: 60px;
+        height: 100px;
+        opacity: 0;         /* Fully invisible */
+    }
+
     .cell {
         width: 100px;       /* 3:5 aspect ratio → height = width * (5/3) */
         height: 40px;
@@ -51,42 +57,39 @@
 </div>
 
 <script>
-    const grid = document.getElementById("grid");
+    // Adds a row with N visible cells aligned on the RIGHT side
+    function addRowRightAligned(cellCount, rowNumber) {
+        // Add invisible left spacers so the REAL cells shift to the right
+        const leftSpacerCount = 8 - cellCount;
+        for (let i = 0; i < leftSpacerCount; i++) {
+            const spacer = document.createElement("div");
+            spacer.className = "spacer";
+            grid.appendChild(spacer);
+        }
 
-    // Helper: adds a row with N cells + row number
-    function addRow(cellCount, rowNumber) {
-        for (let c = 0; c < cellCount; c++) {
+        // Add real cells (these appear on the right)
+        for (let i = 0; i < cellCount; i++) {
             const cell = document.createElement("div");
             cell.className = "cell";
             grid.appendChild(cell);
         }
 
-        // Fill out remaining columns so the grid stays aligned
-        // (we need 8 total rectangle columns for grid consistency)
-        for (let c = cellCount; c < 8; c++) {
-            const spacer = document.createElement("div");
-            spacer.style.width = "6px";
-            spacer.style.height = "6px";
-            spacer.style.opacity = "0";      // invisible spacer
-            grid.appendChild(spacer);
-        }
-
-        // Row number
+        // Row number at far right
         const label = document.createElement("div");
         label.className = "row-number";
         label.textContent = rowNumber;
         grid.appendChild(label);
     }
 
-    // ADD NEW ROWS ABOVE ROW 16
-    addRow(4, 20);  // Row 20 (top)
-    addRow(5, 19);  // Row 19
-    addRow(5, 18);  // Row 18
-    addRow(3, 17);  // Row 17
+    // --- New special rows (top) ---
+    addRowRightAligned(4, 20);  // Row 20
+    addRowRightAligned(5, 19);  // Row 19
+    addRowRightAligned(5, 18);  // Row 18
+    addRowRightAligned(3, 17);  // Row 17
 
-    // ORIGINAL ROWS (all with 8 cells)
+    // --- Original rows 16 → 1 (always 8 rectangles) ---
     for (let r = 16; r >= 1; r--) {
-        addRow(8, r);
+        addRowRightAligned(8, r);
     }
 </script>
 

@@ -1,17 +1,15 @@
 const grid = document.getElementById("grid");
-const rowMap = {};   // rowMap[trackNumber] = array of cells/spacers
+const rowMap = {};   // rowMap[trackNumber] = [cells/spacers...]
 
-const TOTAL_COLS = 16;   // doubled from 8
+// ------------------------------------------
+// BUILD THE GRID
+// ------------------------------------------
 
-
-// ----------------------------------------------------
-// Build a right-aligned row with N real rectangles
-// ----------------------------------------------------
-function addRowRightAligned(realCount, rowNumber) {
+function addRowRightAligned(cellCount, rowNumber) {
     const cells = [];
 
-    // Invisible left-side spacers
-    const leftSpacerCount = TOTAL_COLS - realCount;
+    // Left spacers (invisible)
+    const leftSpacerCount = 8 - cellCount;
     for (let i = 0; i < leftSpacerCount; i++) {
         const spacer = document.createElement("div");
         spacer.className = "spacer";
@@ -19,15 +17,15 @@ function addRowRightAligned(realCount, rowNumber) {
         cells.push(spacer);
     }
 
-    // Real cells on the RIGHT side
-    for (let i = 0; i < realCount; i++) {
+    // Visible rectangles
+    for (let i = 0; i < cellCount; i++) {
         const cell = document.createElement("div");
         cell.className = "cell";
         grid.appendChild(cell);
         cells.push(cell);
     }
 
-    // Row number at far right
+    // Row number
     const label = document.createElement("div");
     label.className = "row-number";
     label.textContent = rowNumber;
@@ -36,94 +34,89 @@ function addRowRightAligned(realCount, rowNumber) {
     rowMap[rowNumber] = cells;
 }
 
+// Special rows
+addRowRightAligned(4, 20);
+addRowRightAligned(5, 19);
+addRowRightAligned(5, 18);
+addRowRightAligned(3, 17);
 
-// ----------------------------------------------------
-// BUILD ALL ROWS
-// (Counts are doubled because grid width doubled)
-// ----------------------------------------------------
-
-addRowRightAligned(8, 20);   // was 4, now doubled
-addRowRightAligned(10, 19);  // was 5 → 10
-addRowRightAligned(10, 18);  // was 5 → 10
-addRowRightAligned(6, 17);   // was 3 → 6
-
-// Rows 16–1 each have full width = 16 rectangles
+// 16 → 1 rows
 for (let r = 16; r >= 1; r--) {
-    addRowRightAligned(16, r);
+    addRowRightAligned(8, r);
 }
 
 
-// ----------------------------------------------------
-// Place one text label in the rightmost empty cell
-// ----------------------------------------------------
+// ------------------------------------------
+// FUNCTION: Assign a string into rightmost empty cell
+// ------------------------------------------
 function assignTrainToTrack(text, trackNumber) {
     const cells = rowMap[trackNumber];
     if (!cells) return;
 
+    // Search from the rightmost end
     for (let i = cells.length - 1; i >= 0; i--) {
-        let c = cells[i];
+        const c = cells[i];
         if (c.classList.contains("cell") && c.textContent.trim() === "") {
             c.textContent = text;
             return;
         }
     }
+
     console.warn("Track", trackNumber, "has no empty rectangles left.");
 }
 
 
-// ----------------------------------------------------
-// Load the yard file, parse consist data
-// ----------------------------------------------------
+// ------------------------------------------
+// FUNCTION: Load remote yard file
+// ------------------------------------------
+
 async function loadYardData() {
     try {
         const res = await fetch("https://gis.wmata.com/proxy/proxy.ashx?https://gispro.wmata.com/RpmSpecialTrains/api/SpcialTrain");
         const rawText = await res.text();
+
+        // Parse JSON-like text (it *is* JSON)
         const data = JSON.parse(rawText);
 
         const consists =
             data?.DataTable?.["diffgr:diffgram"]?.DocumentElement?.CurrentConsists;
 
         if (!consists) {
-            console.error("Missing CurrentConsists section.");
+            console.error("Could not locate CurrentConsists section.");
             return;
         }
 
+        // Loop through each consist
         for (const item of consists) {
-
-            // Only Greenbelt Yard
             if (item.LocationName?.trim() !== "Greenbelt Yard")
                 continue;
 
-            // Track number
-            const trackNumber = parseInt(item.TrackName?.trim());
+            let trackName = item.TrackName?.trim();
+            if (!trackName) continue;
+
+            // TrackName is "04", "15", etc.
+            let trackNumber = parseInt(trackName, 10);
             if (isNaN(trackNumber)) continue;
 
-            const cars = item.Cars?.trim();
+            let cars = item.Cars?.trim();
             if (!cars) continue;
 
-            // First split at periods
-            const segments = cars.split(".");
+            // Split cars by periods
+            let carSegments = cars.split(".");
 
-            for (let segment of segments) {
-                segment = segment.trim();
-                if (!segment) continue;
-
-                // Now split at "-" so each car goes in its own box
-                const carParts = segment.split("-");
-
-                for (const car of carParts) {
-                    assignTrainToTrack(car.trim(), trackNumber);
-                }
+            // Place into rightmost slots
+            for (const segment of carSegments) {
+                assignTrainToTrack(segment, trackNumber);
             }
         }
 
     } catch (err) {
-        console.error("Error loading file:", err);
+        console.error("Error loading yard file:", err);
     }
 }
 
 
-// ----------------------------------------------------
-// Auto-execute after page loads
-// ----------------------------------------------------
+// ------------------------------------------
+// AUTO-LOAD THE REMOTE FILE
+// ------------------------------------------
 loadYardData();

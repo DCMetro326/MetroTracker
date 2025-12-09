@@ -1,4 +1,4 @@
-import { buildLeftRow, buildRightRow, loadWMATA } from "./script.js";
+import { buildLeftRow, buildRightRow, loadWMATA } from "script.js";
 
 const left = document.getElementById("leftGrid");
 const right = document.getElementById("rightGrid");

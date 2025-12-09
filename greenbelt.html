@@ -27,7 +27,7 @@
     /* Both grids use identical structure */
     .container {
         display: grid;
-        grid-template-columns: repeat(8, auto) 40px;
+        grid-template-columns: repeat(8, auto) 30px;
         column-gap: 2px;
         row-gap: 6px;
     }
@@ -39,11 +39,11 @@
     }
 
     .cell {
-        width: 100px;
-        height: 40px;
+        width: 70px;
+        height: 28px;
         border: 2px solid black;
         box-sizing: border-box;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: bold;
         text-align: center;
         display: flex;
@@ -52,9 +52,10 @@
     }
 
     .row-number {
-        font-size: 16px;
-        padding-left: 6px;
-        text-align: left;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;   /* center horizontally */
+        align-items: center;       /* center vertically */
     }
 </style>
 </head>

@@ -7,47 +7,54 @@
     body {
         font-family: Arial, sans-serif;
         margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;   /* center horizontally */
-        align-items: center;       /* center vertically */
+        padding: 20px;
         background: #f7f7f7;
     }
 
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Two side-by-side grids */
     .yard-layout {
         display: flex;
-        gap: 40px;
+        justify-content: center;
+        gap: 60px;
+        align-items: flex-start;
     }
-    
+
+    /* Both grids use identical structure */
     .container {
         display: grid;
         grid-template-columns: repeat(8, auto) 40px;
-        row-gap: 6px;
         column-gap: 2px;
+        row-gap: 6px;
     }
 
     .spacer {
         width: 6px;
         height: 6px;
-        opacity: 0;         /* Fully invisible */
+        opacity: 0;
     }
 
     .cell {
-        width: 100px;       /* 3:5 aspect ratio → height = width * (5/3) */
+        width: 100px;
         height: 40px;
         border: 2px solid black;
         box-sizing: border-box;
         font-size: 14px;
         font-weight: bold;
-        justify-content: center;   /* centered horizontally */
-        align-items: center;
         text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .row-number {
-        font-size: 18px;
-        text-align: left;
+        font-size: 16px;
         padding-left: 6px;
+        text-align: left;
     }
 </style>
 </head>
@@ -55,7 +62,7 @@
 
 <h2>Greenbelt Yard</h2>
 
-
+<!-- TWO GRIDS SIDE-BY-SIDE -->
 <div class="yard-layout">
     <div class="container" id="leftGrid"></div>
     <div class="container" id="rightGrid"></div>

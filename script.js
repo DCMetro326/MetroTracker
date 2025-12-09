@@ -61,32 +61,36 @@ window.YardTools = {
     },
 
     // ======================================
-    // ASSIGN TRAIN (with overflow detection + highlight special trains)
+    // ASSIGN TRAIN (with overflow detection + external special train list)
     // ======================================
     assignTrain(track, train) {
         const cells = this.rowMap[track];
-        if (!cells) return false;   // allow detection
+        if (!cells) return false;
     
         for (let i = cells.length - 1; i >= 0; i--) {
             if (cells[i].classList.contains("cell") &&
                 cells[i].textContent.trim() === "") {
     
-                // Place the train
+                // Place train text
                 cells[i].textContent = train;
     
-                // Check for special trains in this segment
-                const specialTrains = ["1000","1001","2000","2001","4000","4001","7002","7003"];
-                const segments = train.split("-"); // handle "1001-2000"
-                if (segments.some(s => specialTrains.includes(s.trim()))) {
-                    cells[i].style.backgroundColor = "#00BFFF"; // blue
-                    cells[i].style.color = "white"; // for contrast
+                // Get special train list from separate file
+                const specials = window.specialTrains || [];
+    
+                // Split pair "1001-2000" --> ["1001","2000"]
+                const parts = train.split("-").map(s => s.trim());
+    
+                // Check if ANY part is special
+                const isSpecial = parts.some(p => specials.includes(p));
+    
+                if (isSpecial) {
+                    cells[i].classList.add("special-train-cell");
                 }
     
-                return true; // successfully assigned
+                return true;
             }
         }
-    
-        return false; // no room
+        return false;
     },
 
 

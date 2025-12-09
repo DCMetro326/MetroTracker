@@ -74,24 +74,37 @@ window.YardTools = {
                 // Place train text
                 cells[i].textContent = train;
     
-                // Get special train list from separate file
-                const specials = window.specialTrains || [];
+                // Load special train mapping
+                const types = window.specialTrainTypes || {};
     
-                // Split pair "1001-2000" --> ["1001","2000"]
-                const parts = train.split("-").map(s => s.trim());
+                // Break train pair ("1001-2000")
+                const segments = train.split("-").map(s => s.trim());
     
-                // Check if ANY part is special
-                const isSpecial = parts.some(p => specials.includes(p));
+                // Detect which type applies
+                let matchedType = null;
     
-                if (isSpecial) {
-                    cells[i].classList.add("special-train-cell");
+                outer:
+                for (let type in types) {
+                    for (let num of types[type]) {
+                        if (segments.includes(num)) {
+                            matchedType = type;
+                            break outer;
+                        }
+                    }
+                }
+    
+                // Apply CSS class if matched
+                if (matchedType) {
+                    cells[i].classList.add(`special-${matchedType}`);
                 }
     
                 return true;
             }
         }
+    
         return false;
-    },
+    }
+
 
 
     // ======================================

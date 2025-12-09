@@ -1,5 +1,6 @@
-const grid = document.getElementById("grid");
-const rowMap = {};   // rowMap[trackNumber] = [cells/spacers...]
+const leftGrid = document.getElementById("leftGrid");
+const rightGrid = document.getElementById("rightGrid");
+const rowMap = {};
 // Specialty track name → internal label mapping
 const specialtyMap = {
     "1N": "1n",
@@ -19,63 +20,62 @@ const specialtyMap = {
 // BUILD THE GRID
 // ------------------------------------------
 
-function addRowRightAligned(cellCount, rowNumber) {
-    const cells = [];
-
-    // Left spacers (invisible)
-    const leftSpacerCount = 8 - cellCount;
-    for (let i = 0; i < leftSpacerCount; i++) {
-        const spacer = document.createElement("div");
-        spacer.className = "spacer";
-        grid.appendChild(spacer);
-        cells.push(spacer);
-    }
-
-    // Visible rectangles
-    for (let i = 0; i < cellCount; i++) {
-        const cell = document.createElement("div");
-        cell.className = "cell";
-        grid.appendChild(cell);
-        cells.push(cell);
-    }
-
-    // Row number label
-    const label = document.createElement("div");
-    label.className = "row-number";
-    label.textContent = rowNumber;
-    grid.appendChild(label);
-
-    rowMap[rowNumber] = cells;
-}
-
-// NEW — left-aligned specialty tracks
 function addRowLeftAligned(cellCount, rowLabel) {
     const cells = [];
+    const parent = leftGrid;
 
-    // Visible rectangles
+    // visible cells
     for (let i = 0; i < cellCount; i++) {
         const cell = document.createElement("div");
         cell.className = "cell";
-        grid.appendChild(cell);
+        parent.appendChild(cell);
         cells.push(cell);
     }
 
-    // Fill remaining space with invisible spacers so rows align
-    const rightSpacerCount = 8 - cellCount;
-    for (let i = 0; i < rightSpacerCount; i++) {
+    // fill to 8
+    for (let i = cellCount; i < 8; i++) {
         const spacer = document.createElement("div");
         spacer.className = "spacer";
-        grid.appendChild(spacer);
+        parent.appendChild(spacer);
         cells.push(spacer);
     }
 
-    // Row label
+    // label
     const label = document.createElement("div");
     label.className = "row-number";
     label.textContent = rowLabel;
-    grid.appendChild(label);
+    parent.appendChild(label);
 
     rowMap[rowLabel] = cells;
+}
+
+function addRowRightAligned(cellCount, rowNumber) {
+    const cells = [];
+    const parent = rightGrid;
+
+    // spacers
+    for (let i = 0; i < 8 - cellCount; i++) {
+        const spacer = document.createElement("div");
+        spacer.className = "spacer";
+        parent.appendChild(spacer);
+        cells.push(spacer);
+    }
+
+    // cells
+    for (let i = 0; i < cellCount; i++) {
+        const cell = document.createElement("div");
+        cell.className = "cell";
+        parent.appendChild(cell);
+        cells.push(cell);
+    }
+
+    // label
+    const label = document.createElement("div");
+    label.className = "row-number";
+    label.textContent = rowNumber;
+    parent.appendChild(label);
+
+    rowMap[rowNumber] = cells;
 }
 
 // ------------------------------------------

@@ -25,19 +25,26 @@
     }
 
     /* Both grids use identical structure */
-    .container {
+    #leftGrid {
         display: grid;
-        grid-template-columns: repeat(8, auto) 30px;
+        grid-template-columns: 30px repeat(8, auto);   /* label on the LEFT */
         column-gap: 2px;
-        row-gap: 6px;
+        row-gap: 4px;
     }
-
+    
+    #rightGrid {
+        display: grid;
+        grid-template-columns: repeat(8, auto) 30px;   /* label on the RIGHT */
+        column-gap: 2px;
+        row-gap: 4px;
+    }
+    
     .spacer {
-        width: 6px;
-        height: 6px;
+        width: 4px;
+        height: 4px;
         opacity: 0;
     }
-
+    
     .cell {
         width: 70px;
         height: 28px;
@@ -50,13 +57,14 @@
         justify-content: center;
         align-items: center;
     }
-
+    
     .row-number {
         font-size: 14px;
         display: flex;
-        justify-content: center;   /* center horizontally */
-        align-items: center;       /* center vertically */
+        justify-content: center;     /* center horizontally */
+        align-items: center;         /* center vertically */
     }
+
 </style>
 </head>
 <body>

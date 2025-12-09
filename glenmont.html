@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Glenmont Yard</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;   /* center horizontally */
+        align-items: center;       /* center vertically */
+        background: #f7f7f7;
+    }
+
+    /* Wrap the grid so we can center this box */
+    .grid-wrapper {
+        padding: 20px;
+    }
+
+    /* Grid layout: 8 columns + 1 column for the row numbers */
+    .container {
+        display: grid;
+        grid-template-columns: repeat(8, auto) 40px;
+        column-gap: 2px;   /* very small gap between columns */
+        row-gap: 6px;     /* slightly larger gap between rows */
+        align-items: center;
+    }
+
+    .spacer {
+        width: 6px;
+        height: 6px;
+        opacity: 0;         /* Fully invisible */
+    }
+
+    .cell {
+        width: 100px;       /* 3:5 aspect ratio → height = width * (5/3) */
+        height: 40px;
+        border: 2px solid black;
+        box-sizing: border-box;
+        font-size: 14px;
+        font-weight: bold;
+        justify-content: center;   /* centered horizontally */
+        align-items: center;
+        text-align: center;
+    }
+
+    .row-number {
+        font-size: 18px;
+        text-align: left;
+        padding-left: 6px;
+    }
+</style>
+</head>
+<body>
+
+<h2>Glenmont Yard</h2>
+
+
+<div class="grid-wrapper">
+    <div class="container" id="grid"></div>
+</div>
+
+<script src="glenmontScript.js"></script>
+
+</body>
+</html>

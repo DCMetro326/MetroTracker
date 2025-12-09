@@ -40,13 +40,21 @@ function addRowRightAligned(cellCount, label) {
 // ER1 → 2 trains
 addRowRightAligned(4, "ER1");
 
-// Y1 – Y4 → 5 trains each
-for (let i = 1; i <= 4; i++) {
+// Y1 – Y3 → 5 trains each
+for (let i = 1; i <= 3; i++) {
     addRowRightAligned(5, "Y" + i);
 }
 
-// Y6 – Y11 → 6 trains each
-for (let i = 6; i <= 11; i++) {
+// Y4 → 6 trains each
+addRowRightAligned(6, "Y4");
+
+// Y5 – Y7 → 7 trains each
+for (let i = 5; i <= 7; i++) {
+    addRowRightAligned(7, "Y" + i);
+}
+
+// Y8 – Y11 → 6 trains each
+for (let i = 8; i <= 11; i++) {
     addRowRightAligned(6, "Y" + i);
 }
 
@@ -75,6 +83,7 @@ const glenmontTrackMap = {
     "Y2": "Y2",
     "Y3": "Y3",
     "Y4": "Y4",
+    "Y5": "Y5",
     "Y6": "Y6",
     "Y7": "Y7",
     "Y8": "Y8",

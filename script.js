@@ -61,7 +61,7 @@ window.YardTools = {
     },
 
     // ======================================
-    // ASSIGN TRAIN (with overflow detection)
+    // ASSIGN TRAIN (with overflow detection + highlight special trains)
     // ======================================
     assignTrain(track, train) {
         const cells = this.rowMap[track];
@@ -70,21 +70,23 @@ window.YardTools = {
         for (let i = cells.length - 1; i >= 0; i--) {
             if (cells[i].classList.contains("cell") &&
                 cells[i].textContent.trim() === "") {
-                
+    
+                // Place the train
                 cells[i].textContent = train;
     
-                // NEW FEATURE: highlight special trains in blue
+                // Check for special trains in this segment
                 const specialTrains = ["1000","1001","2000","2001","4000","4001","7002","7003"];
-                if (specialTrains.includes(train.trim())) {
+                const segments = train.split("-"); // handle "1001-2000"
+                if (segments.some(s => specialTrains.includes(s.trim()))) {
                     cells[i].style.backgroundColor = "#00BFFF"; // blue
-                    cells[i].style.color = "white"; // optional: white text for contrast
+                    cells[i].style.color = "white"; // for contrast
                 }
     
-                return true; // success
+                return true; // successfully assigned
             }
         }
     
-        return false; // no space
+        return false; // no room
     },
 
 

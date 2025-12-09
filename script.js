@@ -11,6 +11,12 @@ const rowMap = {}; // maps row label → array of cells
 function addRowLeftAligned(cellCount, rowLabel) {
     const cells = [];
 
+    // LEFT — row label
+    const label = document.createElement("div");
+    label.className = "row-number";
+    label.textContent = rowLabel;
+    leftGrid.appendChild(label);
+
     // visible cells
     for (let i = 0; i < cellCount; i++) {
         const cell = document.createElement("div");
@@ -19,19 +25,13 @@ function addRowLeftAligned(cellCount, rowLabel) {
         cells.push(cell);
     }
 
-    // fill up to 8 units
+    // fill up to 8
     for (let i = cellCount; i < 8; i++) {
         const spacer = document.createElement("div");
         spacer.className = "spacer";
         leftGrid.appendChild(spacer);
         cells.push(spacer);
     }
-
-    // row label
-    const label = document.createElement("div");
-    label.className = "row-number";
-    label.textContent = rowLabel;
-    leftGrid.appendChild(label);
 
     rowMap[rowLabel] = cells;
 }

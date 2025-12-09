@@ -65,18 +65,28 @@ window.YardTools = {
     // ======================================
     assignTrain(track, train) {
         const cells = this.rowMap[track];
-        if (!cells) return false;   // NEW: allow detection
-
+        if (!cells) return false;   // allow detection
+    
         for (let i = cells.length - 1; i >= 0; i--) {
             if (cells[i].classList.contains("cell") &&
                 cells[i].textContent.trim() === "") {
+                
                 cells[i].textContent = train;
-                return true;       // NEW: success
+    
+                // NEW FEATURE: highlight special trains in blue
+                const specialTrains = ["1000","1001","2000","2001","4000","4001","7002","7003"];
+                if (specialTrains.includes(train.trim())) {
+                    cells[i].style.backgroundColor = "#00BFFF"; // blue
+                    cells[i].style.color = "white"; // optional: white text for contrast
+                }
+    
+                return true; // success
             }
         }
-
-        return false; // NEW: no room
+    
+        return false; // no space
     },
+
 
     // ======================================
     // NEW ALERT FUNCTION

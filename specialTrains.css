@@ -1,0 +1,25 @@
+.special-green {
+    background-color: #00cc44 !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+.special-red {
+    background-color: #ff3333 !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+.special-blue {
+    background-color: #3399ff !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+.special-yellow {
+    background-color: #ffcc00 !important;
+    color: black !important;
+    font-weight: bold;
+}
+
+/* Add new types simply by adding new classes */

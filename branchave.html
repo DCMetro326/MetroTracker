@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Branch Avenue Yard</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f7f7f7;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Yard layout: left + right grids */
+    .yard-layout {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        align-items: flex-start;
+    }
+
+    #leftGrid {
+        display: grid;
+        grid-template-columns: 40px repeat(8, auto);  /* label left */
+        column-gap: 2px;
+        row-gap: 4px;
+    }
+
+    #rightGrid {
+        display: grid;
+        grid-template-columns: repeat(8, auto) 40px;  /* label right */
+        column-gap: 2px;
+        row-gap: 4px;
+    }
+
+    .cell {
+        width: 70px;
+        height: 28px;
+        border: 2px solid black;
+        box-sizing: border-box;
+        font-size: 12px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .spacer {
+        width: 6px;
+        height: 6px;
+        opacity: 0;
+    }
+
+    .row-number {
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+</head>
+<body>
+
+<h2>Branch Avenue Yard</h2>
+
+<!-- TWO GRIDS SIDE-BY-SIDE -->
+<div class="yard-layout">
+    <div class="container" id="leftGrid"></div>
+    <div class="container" id="rightGrid"></div>
+</div>
+
+<script src="script.js"></script>
+<script src="branchaveScript.js"></script>
+
+</body>
+</html>

@@ -14,18 +14,16 @@
         background: #f7f7f7;
     }
 
-    /* Wrap the grid so we can center this box */
-    .grid-wrapper {
-        padding: 20px;
+    .yard-layout {
+        display: flex;
+        gap: 40px;
     }
-
-    /* Grid layout: 8 columns + 1 column for the row numbers */
+    
     .container {
         display: grid;
         grid-template-columns: repeat(8, auto) 40px;
-        column-gap: 2px;   /* very small gap between columns */
-        row-gap: 6px;     /* slightly larger gap between rows */
-        align-items: center;
+        row-gap: 6px;
+        column-gap: 2px;
     }
 
     .spacer {
@@ -58,8 +56,9 @@
 <h2>Greenbelt Yard</h2>
 
 
-<div class="grid-wrapper">
-    <div class="container" id="grid"></div>
+<div class="yard-layout">
+    <div class="container" id="leftGrid"></div>
+    <div class="container" id="rightGrid"></div>
 </div>
 
 <script src="script.js"></script>

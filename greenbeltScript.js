@@ -36,7 +36,11 @@ const map = {
 
 // numeric tracks 1–20
 for (let i = 1; i <= 20; i++) {
-    map[i.toString()] = i;
+    const normal = i.toString();        // "1"
+    const padded = normal.padStart(2, "0"); // "01"
+
+    map[normal] = i;     // "1" → 1
+    map[padded] = i;     // "01" → 1 (FIXES THE PROBLEM)
 }
 
 T.loadWMATA("Greenbelt Yard", map);

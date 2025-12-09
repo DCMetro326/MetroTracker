@@ -103,7 +103,7 @@ window.YardTools = {
         }
     
         return false;
-    }
+    },
 
 
 

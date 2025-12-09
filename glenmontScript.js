@@ -38,7 +38,7 @@ function addRowRightAligned(cellCount, label) {
 // ------------------------------------------------------
 
 // ER1 → 2 trains
-addRowRightAligned(2, "ER1");
+addRowRightAligned(4, "ER1");
 
 // Y1 – Y4 → 5 trains each
 for (let i = 1; i <= 4; i++) {

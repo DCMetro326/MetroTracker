@@ -2,12 +2,12 @@ const grid = document.getElementById("grid");
 const rowMap = {};
 
 // ------------------------------------------------------
-// Creates a right-aligned row: [spacer][spacer][cells][cells]… [label]
+// Creates a right-aligned row: [spacers][cells]... [label]
 // ------------------------------------------------------
 function addRowRightAligned(cellCount, label) {
     const cells = [];
 
-    // Add spacers on the left (8 - cells)
+    // Left-side spacers so visible cells are right aligned
     const spacerCount = 8 - cellCount;
     for (let i = 0; i < spacerCount; i++) {
         const spacer = document.createElement("div");
@@ -16,7 +16,7 @@ function addRowRightAligned(cellCount, label) {
         cells.push(spacer);
     }
 
-    // Add visible cells
+    // Visible cells
     for (let i = 0; i < cellCount; i++) {
         const cell = document.createElement("div");
         cell.className = "cell";
@@ -24,7 +24,7 @@ function addRowRightAligned(cellCount, label) {
         cells.push(cell);
     }
 
-    // Add row label
+    // Label
     const lbl = document.createElement("div");
     lbl.className = "row-number";
     lbl.textContent = label;
@@ -51,17 +51,80 @@ for (let i = 6; i <= 11; i++) {
 }
 
 // ------------------------------------------------------
-// Assign trains (if WMATA JSON is added later)
+// Assign a train into the rightmost available box
 // ------------------------------------------------------
-function assignTrainToTrack(text, trackLabel) {
+function assignTrainToTrack(trainNumber, trackLabel) {
     const cells = rowMap[trackLabel];
     if (!cells) return;
 
-    // fill from the rightmost cell backwards
     for (let i = cells.length - 1; i >= 0; i--) {
-        if (cells[i].classList.contains("cell") && cells[i].textContent === "") {
-            cells[i].textContent = text;
+        if (cells[i].classList.contains("cell") &&
+            cells[i].textContent.trim() === "") {
+            cells[i].textContent = trainNumber;
             return;
         }
     }
 }
+
+// ------------------------------------------------------
+// MAP WMATA TRACK NAMES → Glenmont Yard Display Labels
+// ------------------------------------------------------
+const glenmontTrackMap = {
+    "ER1": "ER1",
+    "Y1": "Y1",
+    "Y2": "Y2",
+    "Y3": "Y3",
+    "Y4": "Y4",
+    "Y6": "Y6",
+    "Y7": "Y7",
+    "Y8": "Y8",
+    "Y9": "Y9",
+    "Y10": "Y10",
+    "Y11": "Y11"
+};
+
+// ------------------------------------------------------
+// LOAD WMATA DATA
+// ------------------------------------------------------
+async function loadGlenmontData() {
+    try {
+        const res = await fetch(
+            "https://gis.wmata.com/proxy/proxy.ashx?https://gispro.wmata.com/RpmSpecialTrains/api/SpcialTrain"
+        );
+        const rawText = await res.text();
+        const data = JSON.parse(rawText);
+
+        const consists =
+            data?.DataTable?.["diffgr:diffgram"]?.DocumentElement?.CurrentConsists;
+
+        if (!consists) {
+            console.error("No CurrentConsists found");
+            return;
+        }
+
+        for (const item of consists) {
+            if (item.LocationName?.trim() !== "Glenmont Yard") continue;
+
+            let trackName = item.TrackName?.trim();
+            if (!trackName) continue;
+
+            let mapped = glenmontTrackMap[trackName.toUpperCase()];
+            if (!mapped) continue; // unknown track
+
+            let cars = item.Cars?.trim();
+            if (!cars) continue;
+
+            let segments = cars.split(".");
+
+            for (const seg of segments) {
+                assignTrainToTrack(seg, mapped);
+            }
+        }
+
+    } catch (err) {
+        console.error("Error loading Glenmont yard data:", err);
+    }
+}
+
+// auto-load
+loadGlenmontData();

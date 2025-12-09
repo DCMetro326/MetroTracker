@@ -1,10 +1,12 @@
 // =========================================
-// SHARED ENGINE — NO MODULES
-// Everything is inside YardTools global namespace
+// SHARED ENGINE — GLOBAL NAMESPACE
 // =========================================
 
 window.YardTools = {
     rowMap: {},
+
+    // Store unassigned trains for popups
+    unassigned: [],   // NEW ALERT FEATURE
 
     buildLeftRow(grid, cellCount, label) {
         const { rowMap } = this;
@@ -58,19 +60,43 @@ window.YardTools = {
         rowMap[label] = cells;
     },
 
+    // ======================================
+    // ASSIGN TRAIN (with overflow detection)
+    // ======================================
     assignTrain(track, train) {
         const cells = this.rowMap[track];
-        if (!cells) return;
+        if (!cells) return false;   // NEW: allow detection
 
         for (let i = cells.length - 1; i >= 0; i--) {
             if (cells[i].classList.contains("cell") &&
                 cells[i].textContent.trim() === "") {
                 cells[i].textContent = train;
-                return;
+                return true;       // NEW: success
             }
         }
+
+        return false; // NEW: no room
     },
 
+    // ======================================
+    // NEW ALERT FUNCTION
+    // ======================================
+    showAlerts() {
+        if (this.unassigned.length === 0) return;
+
+        let msg = "⚠️ UNASSIGNED TRAINS FOUND\n\n";
+
+        this.unassigned.forEach(item => {
+            msg += `Cars: ${item.cars}\nTrackName: ${item.track}\nReason: ${item.reason}\n\n`;
+        });
+
+        alert(msg);
+        this.unassigned = []; // clear after showing
+    },
+
+    // ======================================
+    // WMATA LOADER WITH UNASSIGNED DETECTION
+    // ======================================
     async loadWMATA(yardName, map) {
         try {
             const res = await fetch(
@@ -87,19 +113,44 @@ window.YardTools = {
             for (const item of consists) {
                 if (item.LocationName?.trim() !== yardName) continue;
 
-                const track = item.TrackName?.trim();
-                if (!track) continue;
+                const trackName = item.TrackName?.trim();
+                if (!trackName) continue;
 
-                const mapped = map[track.toUpperCase()];
-                if (!mapped) continue;
+                const upper = trackName.toUpperCase();
+                const mapped = map[upper];
 
-                const cars = item.Cars?.trim();
-                if (!cars) continue;
+                const cars = item.Cars?.trim() || "(unknown cars)";
 
-                cars.split(".").forEach(seg =>
-                    this.assignTrain(mapped, seg)
-                );
+                // 1️⃣ TRACK NOT IN MAP → ALERT
+                if (!mapped) {
+                    this.unassigned.push({
+                        track: trackName,
+                        cars,
+                        reason: "Track not defined for this yard"
+                    });
+                    continue;
+                }
+
+                // 2️⃣ TRY TO PLACE CARS IN CELLS
+                const segments = cars.split(".");
+
+                for (const seg of segments) {
+                    const success = this.assignTrain(mapped, seg);
+
+                    // 2️⃣ NO SPACE AVAILABLE → ALERT
+                    if (!success) {
+                        this.unassigned.push({
+                            track: trackName,
+                            cars: seg,
+                            reason: `No room in track ${mapped}`
+                        });
+                    }
+                }
             }
+
+            // Show alerts at end
+            this.showAlerts();
+
         } catch (err) {
             console.error(`Error loading WMATA data for ${yardName}:`, err);
         }

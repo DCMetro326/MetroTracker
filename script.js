@@ -91,7 +91,7 @@ addRowLeftAligned(2, "5an");
 addRowLeftAligned(4, "6n");
 addRowLeftAligned(4, "7n");
 addRowLeftAligned(1, "P1");
-addRowLeftAligned(2, "P2");
+addRowLeftAligned(1, "P2");
 
 // ------------------------------------------
 // EXISTING RIGHT-SIDE TRACKS

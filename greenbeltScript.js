@@ -46,5 +46,4 @@ for (let i = 1; i <= 20; i++) {
     map[padded] = i;     // "01" → 1 (FIXES THE PROBLEM)
 }
 
-T.restoreState();
 T.loadWMATA("Greenbelt Yard", map);

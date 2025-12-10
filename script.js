@@ -137,6 +137,9 @@ window.YardTools = {
             const raw = await res.text();
             const data = JSON.parse(raw);
 
+            // CLEAR THE GRID BEFORE NEW DATA FILLS IT
+            this.clearCells();
+
             const consists =
                 data?.DataTable?.["diffgr:diffgram"]?.DocumentElement?.CurrentConsists;
 
@@ -189,13 +192,17 @@ window.YardTools = {
     },
 
     // ======================================
-    // SAVE CURRENT GRID STATE TO LOCALSTORAGE
+    // SAVE CURRENT GRID STATE (text + classes)
     // ======================================
     saveState() {
         const state = {};
     
         for (const [track, cells] of Object.entries(this.rowMap)) {
-            state[track] = cells.map(c => c.textContent.trim());
+            state[track] = cells.map(c => ({
+                text: c.textContent.trim(),
+                classes: Array.from(c.classList)
+                    .filter(cls => cls !== "cell" && cls !== "spacer")
+            }));
         }
     
         localStorage.setItem("yardState", JSON.stringify(state));
@@ -203,7 +210,8 @@ window.YardTools = {
     
     
     // ======================================
-    // RESTORE PREVIOUS STATE IF EXISTS
+    // RESTORE PREVIOUS GRID STATE
+    // (text + CSS classes)
     // ======================================
     restoreState() {
         const saved = localStorage.getItem("yardState");
@@ -211,16 +219,45 @@ window.YardTools = {
     
         const state = JSON.parse(saved);
     
-        for (const [track, values] of Object.entries(state)) {
+        for (const [track, savedCells] of Object.entries(state)) {
             const cells = this.rowMap[track];
             if (!cells) continue;
     
-            values.forEach((v, i) => {
-                if (cells[i] && cells[i].classList.contains("cell")) {
-                    cells[i].textContent = v;
+            savedCells.forEach((info, i) => {
+                const cell = cells[i];
+                if (!cell) return;
+    
+                if (cell.classList.contains("cell")) {
+                    cell.textContent = info.text;
+    
+                    // remove old special classes
+                    cell.classList.forEach(cls => {
+                        if (cls !== "cell") cell.classList.remove(cls);
+                    });
+    
+                    // restore special classes
+                    info.classes.forEach(cls => cell.classList.add(cls));
+                }
+            });
+        }
+    },
+
+    // ======================================
+    // CLEAR TEXT + SPECIAL CLASSES (but keep grid structure)
+    // ======================================
+    clearCells() {
+        for (const cells of Object.values(this.rowMap)) {
+            cells.forEach(cell => {
+                if (cell.classList.contains("cell")) {
+                    cell.textContent = "";
+    
+                    // Remove all special classes, keep only "cell"
+                    cell.className = "cell";
                 }
             });
         }
     }
+
+
 
 };

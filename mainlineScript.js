@@ -18,7 +18,7 @@ async function loadMainline() {
             c => c.LocationName?.trim() === "Mainline"
         );
 
-        // GROUP BY CONSIST ID
+        // GROUP BY CONSIST
         const grouped = {};
         for (const item of mainline) {
             const id = item.ConsistID;
@@ -29,41 +29,72 @@ async function loadMainline() {
                     Cars: []
                 };
             }
+
             const segments = item.Cars?.split(".").map(s => s.trim()) || [];
             grouped[id].Cars.push(...segments);
         }
 
-        // SORT BY DESTCODE NUMERICALLY
+        // SORT BY DEST CODE
         const sorted = Object.values(grouped).sort((a, b) => {
             const A = parseInt(a.DestCode) || 0;
             const B = parseInt(b.DestCode) || 0;
             return A - B;
         });
 
-        // BUILD ROWS IN GRID
-        sorted.forEach(consist => {
-            // Count of boxes required = ConsistLength / 2
-            let segmentCount = Math.ceil(consist.ConsistLength / 2);
+        // SPECIAL TRAIN MAP
+        const specialTypes = window.specialTrainTypes || {};
 
-            // If Cars[] has more segments, use that instead
+        // BUILD ROWS
+        sorted.forEach(consist => {
+            let segmentCount = Math.ceil(consist.ConsistLength / 2);
             segmentCount = Math.max(segmentCount, consist.Cars.length);
 
-            // 1) LEFT SPACERS TO RIGHT-ALIGN
+            // ============================================
+            // 1) Left Spacers (Right Alignment)
+            // ============================================
             for (let i = 0; i < (8 - segmentCount); i++) {
                 const spacer = document.createElement("div");
                 spacer.className = "spacer";
                 grid.appendChild(spacer);
             }
 
-            // 2) CONSIST BOXES (cells)
+            // ============================================
+            // 2) Build each train cell
+            // ============================================
             for (let i = 0; i < segmentCount; i++) {
+                const cars = consist.Cars[i] || "";
                 const cell = document.createElement("div");
                 cell.className = "cell";
-                cell.textContent = consist.Cars[i] || "";
+                cell.textContent = cars;
+
+                // --------------------------------------------
+                // SPECIAL TRAIN DETECTION (same as YardTools)
+                // --------------------------------------------
+                const segments = cars.split("-").map(s => s.trim());
+
+                let matchedType = null;
+
+                outer:
+                for (const type in specialTypes) {
+                    for (const num of specialTypes[type]) {
+                        if (segments.includes(num)) {
+                            matchedType = type;
+                            break outer;
+                        }
+                    }
+                }
+
+                // Apply CSS class (special-typeA, etc)
+                if (matchedType) {
+                    cell.classList.add(`special-${matchedType}`);
+                }
+
                 grid.appendChild(cell);
             }
 
-            // 3) DESTINATION LABEL
+            // ============================================
+            // 3) DestCode label (right side)
+            // ============================================
             const lbl = document.createElement("div");
             lbl.className = "dest-label";
             lbl.textContent = consist.DestCode || "";
@@ -71,7 +102,7 @@ async function loadMainline() {
         });
 
     } catch (err) {
-        console.error("Error loading Mainline:", err);
+        console.error("Error loading Mainline consists:", err);
     }
 }
 

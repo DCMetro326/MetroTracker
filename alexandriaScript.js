@@ -12,7 +12,7 @@ const right = document.getElementById("rightGrid");
 
 // Tracks 1 → 6 : 4 trains each
 for (let t = 1; t <= 6; t++) {
-    T.buildLeftRow(left, 4, t.toString());
+    T.buildLeftRow(left, 5, t.toString());
 }
 
 // Special left-side suffix tracks

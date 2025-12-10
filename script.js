@@ -184,4 +184,40 @@ window.YardTools = {
             console.error(`Error loading WMATA data for ${yardName}:`, err);
         }
     }
+
+    // ======================================
+    // SAVE CURRENT GRID STATE TO LOCALSTORAGE
+    // ======================================
+    saveState() {
+        const state = {};
+    
+        for (const [track, cells] of Object.entries(this.rowMap)) {
+            state[track] = cells.map(c => c.textContent.trim());
+        }
+    
+        localStorage.setItem("yardState", JSON.stringify(state));
+    },
+    
+    
+    // ======================================
+    // RESTORE PREVIOUS STATE IF EXISTS
+    // ======================================
+    restoreState() {
+        const saved = localStorage.getItem("yardState");
+        if (!saved) return;
+    
+        const state = JSON.parse(saved);
+    
+        for (const [track, values] of Object.entries(state)) {
+            const cells = this.rowMap[track];
+            if (!cells) continue;
+    
+            values.forEach((v, i) => {
+                if (cells[i] && cells[i].classList.contains("cell")) {
+                    cells[i].textContent = v;
+                }
+            });
+        }
+    }
+
 };

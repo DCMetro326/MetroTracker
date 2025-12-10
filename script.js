@@ -186,7 +186,7 @@ window.YardTools = {
         } catch (err) {
             console.error(`Error loading WMATA data for ${yardName}:`, err);
         }
-    }
+    },
 
     // ======================================
     // SAVE CURRENT GRID STATE TO LOCALSTORAGE

@@ -7,8 +7,8 @@
 <style>
     body {
         font-family: Arial, sans-serif;
+        background: #f7f7f7;
         padding: 20px;
-        background: #fafafa;
     }
 
     h2 {
@@ -16,40 +16,41 @@
         margin-bottom: 20px;
     }
 
-    #main-grid {
+    /* Matches Glenmont — 8 columns + a right label */
+    .container {
         display: grid;
-        grid-auto-rows: auto;
-        row-gap: 10px;
+        grid-template-columns: repeat(8, auto) 40px;
+        row-gap: 6px;
+        column-gap: 2px;
         justify-content: center;
-    }
-
-    .consist-row {
-        display: grid;
-        grid-auto-columns: 80px;
-        grid-auto-flow: column;
-        column-gap: 4px;
-        align-items: center;
     }
 
     .cell {
-        width: 80px;
-        height: 30px;
-        border: 2px solid #000;
+        width: 70px;
+        height: 28px;
+        border: 2px solid black;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 14px;
-        background: white;
+        font-size: 12px;
         font-weight: bold;
     }
 
+    /* Invisible spacer for right-alignment */
+    .spacer {
+        width: 6px;
+        height: 6px;
+        opacity: 0;
+    }
+
+    /* Destination aligned like track labels */
     .dest-label {
-        padding: 6px 10px;
-        background: #333;
-        color: white;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-weight: bold;
-        border-radius: 4px;
-        margin-left: 10px;
+        color: #000;
     }
 </style>
 </head>
@@ -57,9 +58,9 @@
 
 <h2>Mainline</h2>
 
-<div id="main-grid"></div>
+<div class="container" id="main-grid"></div>
 
-<script src="mainline.js"></script>
+<script src="mainlineScript.js"></script>
 
 </body>
 </html>

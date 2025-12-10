@@ -62,15 +62,7 @@ T.buildRightRow(right, 7, "11");
 
 const map = {};
 
-// Left-side numeric tracks 16–21
-for (let t = 16; t <= 21; t++) {
-    const normal = t.toString();
-    addMap(normal);
-    addMap(normal.padStart(2, "0"));
-    addMap(normal.padStart(3, "0"));
-}
-
-// Numeric tracks 1–11
+// Numeric tracks 1–21
 for (let i = 1; i <= 21; i++) {
     const normal = i.toString();            // "7"
     const padded2 = normal.padStart(2, "0"); // "07"

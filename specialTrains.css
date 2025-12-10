@@ -22,4 +22,16 @@
     font-weight: bold;
 }
 
-/* Add new types simply by adding new classes */
+.special-wrap {
+    background-color: #bf3651 !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+.special-storage {
+    background-color: white !important;
+    color: red !important;
+    font-weight: bold;
+}
+
+

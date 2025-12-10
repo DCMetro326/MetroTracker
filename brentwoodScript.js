@@ -26,7 +26,7 @@ for (let t = 10; t <= 12; t++) {
 }
 
 // Track 13 : 2 trains
-T.buildLeftRow(left, 4, "13");
+T.buildLeftRow(left, 2, "13");
 
 // ===================================================
 // RIGHT SIDE TRACKS

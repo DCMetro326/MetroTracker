@@ -11,8 +11,8 @@ const right = document.getElementById("rightGrid");
 // ===================================================
 
 // Lettered tracks
-T.buildLeftRow(left, 3, "6H");
-T.buildLeftRow(left, 3, "6G");
+T.buildLeftRow(left, 3, "6h");
+T.buildLeftRow(left, 3, "6g");
 
 // Numeric 16 → 21 (4 trains each)
 for (let t = 16; t <= 21; t++) {

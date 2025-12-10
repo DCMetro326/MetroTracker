@@ -83,4 +83,5 @@ map["S2"] = "S2";
 // LOAD WMATA DATA FOR NEW CARROLLTON
 // ===================================================
 
+T.restoreState();
 T.loadWMATA("New Carrollton Yard", map);

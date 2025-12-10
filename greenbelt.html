@@ -65,6 +65,26 @@
         align-items: center;         /* center vertically */
     }
 
+    /* --- MOBILE / SMALL SCREEN LAYOUT FIX --- */
+    @media screen and (max-width: 700px) {
+    
+        .yard-layout {
+            flex-direction: column;      /* stack vertically */
+            align-items: center;
+            gap: 20px;                   /* smaller gap */
+        }
+    
+        #leftGrid, #rightGrid {
+            transform: scale(0.9);       /* optional: slightly shrink to fit */
+            transform-origin: top center;
+        }
+    
+        body {
+            padding: 10px;
+        }
+    }
+
+
 </style>
 <link rel="stylesheet" href="specialTrains.css">
 </head>

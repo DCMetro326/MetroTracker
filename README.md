@@ -1,6 +1,6 @@
 MetroTracker:
 
-A99 Shady Grove Yard: [https://dcmetro326.github.io/MetroTracker/shadygrove.html](url)
+A99 Shady Grove Yard: https://dcmetro326.github.io/MetroTracker/shadygrove.html
 
 B99 Brentwood Yard: [https://dcmetro326.github.io/MetroTracker/brentwood.html](url)
 

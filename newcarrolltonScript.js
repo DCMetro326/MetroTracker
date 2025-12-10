@@ -74,6 +74,10 @@ for (let i = 1; i <= 21; i++) {
     map[padded2] = normal;
 }
 
+// Add suffix tracks explicitly
+map["6A"] = "6a";
+map["S1"] = "S2";
+map["S2"] = "S1";
 
 // ===================================================
 // LOAD WMATA DATA FOR NEW CARROLLTON

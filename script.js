@@ -73,6 +73,9 @@ window.YardTools = {
     
                 // Place train text
                 cells[i].textContent = train;
+
+                // NEW — save after each assignment
+                this.saveState();
     
                 // Load special train mapping
                 const types = window.specialTrainTypes || {};

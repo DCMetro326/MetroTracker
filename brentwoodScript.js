@@ -25,6 +25,8 @@ for (let t = 10; t <= 12; t++) {
     T.buildLeftRow(left, 3, t.toString());
 }
 
+// Track 13 : 2 trains
+T.buildRightRow(right, 4, "13");
 
 // ===================================================
 // RIGHT SIDE TRACKS
@@ -62,15 +64,17 @@ const map = {};
 for (let i = 1; i <= 21; i++) {
     const normal  = i.toString();           // "7"
     const padded2 = normal.padStart(2, "0"); // "07"
+    const padded3 = normal.padStart(3, "0"); // "007"
 
     map[normal]  = normal;
     map[padded2] = normal;
+    map[padded3] = normal;
 }
 
 // Alpha suffix tracks
-map["9A"] = "09a";
-map["9B"] = "09b";
-map["9C"] = "09c";
+map["9A"] = "9a";
+map["9B"] = "9b";
+map["9C"] = "9c";
 
 
 // ===================================================

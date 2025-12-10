@@ -23,13 +23,13 @@
 }
 
 .special-unique {
-    outline-color: #215725 !important;
-    color: #215725 !important;
+    border-color: #198207 !important;
+    color: #198207 !important;
     font-weight: bold;
 }
 
 .special-flag {
-    background-color: #7da9e3 !important;
+    background-color: #c75f5f !important;
     color: black !important;
     font-weight: bold;
 }
@@ -41,8 +41,8 @@
 }
 
 .special-storage {
-    outline-color: #a10505 !important;
-    color: #a10505 !important;
+    border-color: red !important;
+    color: red !important;
     font-weight: bold;
 }
 

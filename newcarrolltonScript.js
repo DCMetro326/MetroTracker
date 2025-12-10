@@ -20,6 +20,10 @@ for (let t = 17; t <= 21; t++) {
     T.buildLeftRow(left, 4, t.toString());
 }
 
+// Tracks S1 & S2 : 3 trains each?
+T.buildLeftRow(right, 3, "S1");
+T.buildLeftRow(right, 3, "S2");
+
 
 // ===================================================
 // RIGHT SIDE TRACKS

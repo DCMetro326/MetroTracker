@@ -76,8 +76,8 @@ for (let i = 1; i <= 21; i++) {
 
 // Add suffix tracks explicitly
 map["6A"] = "6a";
-map["S1"] = "S2";
-map["S2"] = "S1";
+map["S1"] = "S1";
+map["S2"] = "S2";
 
 // ===================================================
 // LOAD WMATA DATA FOR NEW CARROLLTON

@@ -21,8 +21,12 @@ for (let t = 17; t <= 21; t++) {
 }
 
 // Tracks S1 & S2 : 3 trains each?
-T.buildLeftRow(right, 3, "S1");
-T.buildLeftRow(right, 3, "S2");
+T.buildLeftRow(left, 3, "S1");
+T.buildLeftRow(left, 3, "S2");
+
+// Tracks 6 & 6A : 3 trains each?
+T.buildLeftRow(left, 3, "6");
+T.buildLeftRow(left, 3, "6A");
 
 
 // ===================================================

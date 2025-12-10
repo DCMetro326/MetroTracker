@@ -62,13 +62,6 @@ T.buildRightRow(right, 7, "11");
 
 const map = {};
 
-function addMap(entry) {
-    map[entry.toUpperCase()] = entry;
-}
-
-// Left-side alpha tracks
-["6H", "6G"].forEach(t => addMap(t));
-
 // Left-side numeric tracks 16–21
 for (let t = 16; t <= 21; t++) {
     const normal = t.toString();
@@ -76,9 +69,6 @@ for (let t = 16; t <= 21; t++) {
     addMap(normal.padStart(2, "0"));
     addMap(normal.padStart(3, "0"));
 }
-
-// Right-side alpha tracks
-["1C","1B","1A","6E","6D","6C","6B","6A"].forEach(t => addMap(t));
 
 // Numeric tracks 1–11
 for (let i = 1; i <= 21; i++) {
@@ -88,6 +78,19 @@ for (let i = 1; i <= 21; i++) {
     map[normal] = normal;
     map[padded2] = normal;
 }
+
+map["6A"] = "6a";
+map["6B"] = "6b";
+map["6C"] = "6c";
+map["6D"] = "6d";
+map["6E"] = "6e";
+map["6G"] = "6g";
+map["6H"] = "6h";
+map["1A"] = "1a";
+map["1B"] = "1b";
+map["1C"] = "1c";
+map["S1"] = "S1";
+map["S2"] = "S2";
 
 
 // ===================================================

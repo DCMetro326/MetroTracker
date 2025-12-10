@@ -1,23 +1,23 @@
-.special-green {
-    background-color: #00cc44 !important;
+.special-preserve {
+    background-color: #421c03 !important;
     color: white !important;
     font-weight: bold;
 }
 
-.special-red {
-    background-color: #ff3333 !important;
-    color: white !important;
+.special-money {
+    background-color: #edce00 !important;
+    color: black !important;
     font-weight: bold;
 }
 
-.special-blue {
-    background-color: #3399ff !important;
-    color: white !important;
+.special-vinyl {
+    background-color: #707070 !important;
+    color: black !important;
     font-weight: bold;
 }
 
-.special-yellow {
-    background-color: #ffcc00 !important;
+.special-light {
+    background-color: #f2e394 !important;
     color: black !important;
     font-weight: bold;
 }

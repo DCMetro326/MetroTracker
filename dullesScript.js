@@ -13,6 +13,10 @@ const right = document.getElementById("rightGrid");
 const shuttles = ["Sh1", "Sh2", "Sh3", "Sh4", "Sh5"];
 shuttles.forEach(sh => T.buildLeftRow(left, 3, sh));
 
+// Tracks S1 & S2 : 3 trains each?
+T.buildLeftRow(left, 3, "S1");
+T.buildLeftRow(left, 3, "S2");
+
 
 // ===================================================
 // RIGHT SIDE — 16 → 7 (6 trains) and 6 → 1 (4 trains)
@@ -50,6 +54,9 @@ for (let i = 1; i <= 16; i++) {
 shuttles.forEach(sh => {
     map[sh.toUpperCase()] = sh;   // "SH1" → "Sh1"
 });
+
+map["S1"] = "S1";
+map["S2"] = "S2";
 
 
 // ===================================================

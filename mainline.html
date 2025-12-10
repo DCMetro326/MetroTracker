@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mainline</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #fafafa;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #main-grid {
+        display: grid;
+        grid-auto-rows: auto;
+        row-gap: 10px;
+        justify-content: center;
+    }
+
+    .consist-row {
+        display: grid;
+        grid-auto-columns: 80px;
+        grid-auto-flow: column;
+        column-gap: 4px;
+        align-items: center;
+    }
+
+    .cell {
+        width: 80px;
+        height: 30px;
+        border: 2px solid #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        background: white;
+        font-weight: bold;
+    }
+
+    .dest-label {
+        padding: 6px 10px;
+        background: #333;
+        color: white;
+        font-weight: bold;
+        border-radius: 4px;
+        margin-left: 10px;
+    }
+</style>
+</head>
+<body>
+
+<h2>Mainline</h2>
+
+<div id="main-grid"></div>
+
+<script src="mainline.js"></script>
+
+</body>
+</html>

@@ -40,4 +40,4 @@ addTrack(43);
 // LOAD WMATA DATA FOR THIS YARD
 // ===================================================
 
-T.loadWMATA("Downtown Largo Yard", map);
+T.loadWMATA("Downtown Largo", map);

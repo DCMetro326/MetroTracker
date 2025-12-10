@@ -1,5 +1,5 @@
 async function loadMainline() {
-    const grid = document.getElementById("main-grid");
+    const grid = document.getElementById("mainGrid");
 
     try {
         const res = await fetch(
@@ -18,12 +18,10 @@ async function loadMainline() {
             c => c.LocationName?.trim() === "Mainline"
         );
 
-        // GROUP BY CONSIST
+        // GROUP BY CONSIST ID
         const grouped = {};
-
         for (const item of mainline) {
             const id = item.ConsistID;
-
             if (!grouped[id]) {
                 grouped[id] = {
                     DestCode: item.DestCode?.trim() || "",
@@ -31,30 +29,33 @@ async function loadMainline() {
                     Cars: []
                 };
             }
-
             const segments = item.Cars?.split(".").map(s => s.trim()) || [];
             grouped[id].Cars.push(...segments);
         }
 
-        // BUILD ROWS
-        Object.values(grouped).forEach(consist => {
+        // SORT BY DESTCODE NUMERICALLY
+        const sorted = Object.values(grouped).sort((a, b) => {
+            const A = parseInt(a.DestCode) || 0;
+            const B = parseInt(b.DestCode) || 0;
+            return A - B;
+        });
+
+        // BUILD ROWS IN GRID
+        sorted.forEach(consist => {
+            // Count of boxes required = ConsistLength / 2
             let segmentCount = Math.ceil(consist.ConsistLength / 2);
 
-            // fallback if Cars array gives clearer size
+            // If Cars[] has more segments, use that instead
             segmentCount = Math.max(segmentCount, consist.Cars.length);
 
-            //
-            // 1) Add spacer cells on the LEFT to right-align the consist
-            //
+            // 1) LEFT SPACERS TO RIGHT-ALIGN
             for (let i = 0; i < (8 - segmentCount); i++) {
                 const spacer = document.createElement("div");
                 spacer.className = "spacer";
                 grid.appendChild(spacer);
             }
 
-            //
-            // 2) Add the consist’s boxes (cells)
-            //
+            // 2) CONSIST BOXES (cells)
             for (let i = 0; i < segmentCount; i++) {
                 const cell = document.createElement("div");
                 cell.className = "cell";
@@ -62,9 +63,7 @@ async function loadMainline() {
                 grid.appendChild(cell);
             }
 
-            //
-            // 3) Add the DestCode label (right-side)
-            //
+            // 3) DESTINATION LABEL
             const lbl = document.createElement("div");
             lbl.className = "dest-label";
             lbl.textContent = consist.DestCode || "";
@@ -72,7 +71,7 @@ async function loadMainline() {
         });
 
     } catch (err) {
-        console.error("Error loading Mainline consists:", err);
+        console.error("Error loading Mainline:", err);
     }
 }
 

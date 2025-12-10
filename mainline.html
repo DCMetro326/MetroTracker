@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Mainline</title>
+<title>Mainline Trains</title>
 
 <style>
     body {
         font-family: Arial, sans-serif;
-        background: #f7f7f7;
+        margin: 0;
         padding: 20px;
+        background: #f7f7f7;
     }
 
     h2 {
@@ -16,12 +17,12 @@
         margin-bottom: 20px;
     }
 
-    /* Matches Glenmont — 8 columns + a right label */
-    .container {
+    /* Use same yard-style right-grid layout */
+    #mainGrid {
         display: grid;
-        grid-template-columns: repeat(8, auto) 40px;
-        row-gap: 6px;
+        grid-template-columns: repeat(8, auto) 40px;  /* 8 cells + label on right */
         column-gap: 2px;
+        row-gap: 4px;
         justify-content: center;
     }
 
@@ -29,36 +30,38 @@
         width: 70px;
         height: 28px;
         border: 2px solid black;
+        box-sizing: border-box;
+        font-size: 12px;
+        font-weight: bold;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 12px;
-        font-weight: bold;
+        background: white;
     }
 
-    /* Invisible spacer for right-alignment */
     .spacer {
         width: 6px;
         height: 6px;
         opacity: 0;
     }
 
-    /* Destination aligned like track labels */
     .dest-label {
-        font-size: 16px;
+        font-size: 14px;
         display: flex;
         justify-content: center;
         align-items: center;
+        color: black;
         font-weight: bold;
-        color: #000;
     }
 </style>
+
 </head>
 <body>
 
-<h2>Mainline</h2>
+<h2>Mainline Trains</h2>
 
-<div class="container" id="main-grid"></div>
+<!-- Single grid, built exactly like a yard right-side grid -->
+<div id="mainGrid"></div>
 
 <script src="mainlineScript.js"></script>
 

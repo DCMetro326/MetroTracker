@@ -81,13 +81,12 @@ for (let t = 16; t <= 21; t++) {
 ["1C","1B","1A","6E","6D","6C","6B","6A"].forEach(t => addMap(t));
 
 // Numeric tracks 1–11
-for (let t = 1; t <= 11; t++) {
-    const norm  = t.toString();
-    const p2    = norm.padStart(2, "0");
-    const p3    = norm.padStart(3, "0");
-    addMap(norm);
-    addMap(p2);
-    addMap(p3);
+for (let i = 1; i <= 21; i++) {
+    const normal = i.toString();            // "7"
+    const padded2 = normal.padStart(2, "0"); // "07"
+
+    map[normal] = normal;
+    map[padded2] = normal;
 }
 
 

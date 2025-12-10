@@ -10,7 +10,7 @@ const right = document.getElementById("rightGrid");
 // ============================================
 
 const leftTracks = ["1","2","3","4","5","6","7a","8a","9a","10"];
-leftTracks.forEach(t => T.buildLeftRow(left, 3, t));
+leftTracks.forEach(t => T.buildLeftRow(left, 4, t));
 
 
 // ============================================

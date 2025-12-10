@@ -63,7 +63,7 @@ window.YardTools = {
     // ======================================
     // ASSIGN TRAIN (with overflow detection + external special train list)
     // ======================================
-    assignTrain(track, train) {
+    assignTrain(track, train, extraClass = null) {
         const cells = this.rowMap[track];
         if (!cells) return false;
     
@@ -73,6 +73,11 @@ window.YardTools = {
     
                 // Place train text
                 cells[i].textContent = train;
+
+                // NEW — apply special class
+                if (extraClass) {
+                    cells[i].classList.add(extraClass);
+                }
 
                 // NEW — save after each assignment
                 this.saveState();
@@ -155,6 +160,9 @@ window.YardTools = {
                 const mapped = map[upper];
 
                 const cars = item.Cars?.trim() || "(unknown cars)";
+                const isICE = (item.TrainID?.trim().toUpperCase() === "ICE");
+
+                const cssClass = isICE ? "id-ice" : null;
 
                 // 1️⃣ TRACK NOT IN MAP → ALERT
                 if (!mapped) {
@@ -170,7 +178,7 @@ window.YardTools = {
                 const segments = cars.split(".");
 
                 for (const seg of segments) {
-                    const success = this.assignTrain(mapped, seg);
+                    const success = this.assignTrain(mapped, seg, cssClass);
 
                     // 2️⃣ NO SPACE AVAILABLE → ALERT
                     if (!success) {

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Brentwood Yard</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f7f7f7;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Two side-by-side grids */
+    .yard-layout {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        align-items: flex-start;
+    }
+
+    /* Both grids use identical structure */
+    #leftGrid {
+        display: grid;
+        grid-template-columns: 30px repeat(8, auto);   /* label on the LEFT */
+        column-gap: 2px;
+        row-gap: 4px;
+    }
+    
+    #rightGrid {
+        display: grid;
+        grid-template-columns: repeat(8, auto) 30px;   /* label on the RIGHT */
+        column-gap: 2px;
+        row-gap: 4px;
+    }
+    
+    .spacer {
+        width: 4px;
+        height: 4px;
+        opacity: 0;
+    }
+    
+    .cell {
+        width: 70px;
+        height: 28px;
+        border: 2px solid black;
+        box-sizing: border-box;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .row-number {
+        font-size: 14px;
+        display: flex;
+        justify-content: center;     /* center horizontally */
+        align-items: center;         /* center vertically */
+    }
+
+</style>
+<link rel="stylesheet" href="specialTrains.css">
+</head>
+<body>
+
+<h2>Brentwood Yard</h2>
+
+<!-- TWO GRIDS SIDE-BY-SIDE -->
+<div class="yard-layout">
+    <div class="container" id="leftGrid"></div>
+    <div class="container" id="rightGrid"></div>
+</div>
+
+<script src="specialTrains.js"></script>
+<script src="script.js"></script>
+<script src="brentwoodScript.js"></script>
+
+</body>
+</html>

@@ -106,6 +106,11 @@ window.destinations = {
         stationName: "West Falls Church Yard",
         displayName: "K99"
     },
+    '95': {
+        color: "black",
+        stationName: "West Falls Church Pocket",
+        displayName: "K06"
+    },
     '96': {
         color: "black",
         stationName: "Branch Avenue Yard",

@@ -9,7 +9,7 @@ const right = document.getElementById("rightGrid");
 // BUILD LEFT-SIDE SPECIALIZED ROWS
 // ============================================
 
-const leftTracks = ["1","2","3","4","5","6","7a","8a","9a","10"];
+const leftTracks = ["1","2","3","4","5","6","7","7a","8a","9a","10"];
 leftTracks.forEach(t => T.buildLeftRow(left, 4, t));
 
 
@@ -50,6 +50,7 @@ const map = {
     "4":"4",
     "5":"5",
     "6":"6",
+    "7":"7",
     "07A":"7a",
     "08A":"8a",
     "09A":"9a",

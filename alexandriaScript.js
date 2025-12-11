@@ -20,6 +20,8 @@ T.buildLeftRow(left, 2, "6a");
 T.buildLeftRow(left, 1, "6b");
 T.buildLeftRow(left, 1, "6c");
 T.buildLeftRow(left, 2, "6d");
+T.buildLeftRow(left, 4, "S1");
+T.buildLeftRow(left, 4, "S2");
 
 
 // ===================================================
@@ -79,6 +81,8 @@ map["6A"] = "6a";
 map["6B"] = "6b";
 map["6C"] = "6c";
 map["6D"] = "6d";
+map["S1"] = "S1";
+map["S2"] = "S2";
 
 
 // ===================================================

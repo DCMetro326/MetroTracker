@@ -8,6 +8,7 @@ window.specialTrainTypes = {
              "6043",    //unique floor
              "7150", "7151"],    //APTA decal
     flag: ["3090", "3113", "3278", "3263"],
+    ad: ["7310", "7311", "7300", "7301"],    //ad wrap
     wrap: ["6066", "6067", "6096", "6097", "6154", "6155"],    //holiday
     storage: ["3140", "3141",        //known
               "7132", "7133", "7148", "7149",    //september

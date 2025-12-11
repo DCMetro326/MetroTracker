@@ -11,6 +11,11 @@ window.destinations = {
         stationName: "Glenmont",
         displayName: "B11"
     },
+    '15': {
+        color: "red",
+        stationName: "Brookland",
+        displayName: "B05"
+    },
     '16': {
         color: "blue",
         stationName: "Franconia-Springfield",
@@ -46,6 +51,11 @@ window.destinations = {
         stationName: "Downtown Largo",
         displayName: "G05"
     },
+    '52': {
+        color: "#777b7d",
+        stationName: "New Carrollton",
+        displayName: "D13"
+    },
     '68': {
         color: "#777b7d",
         stationName: "Ashburn",
@@ -55,6 +65,26 @@ window.destinations = {
         color: "blue",
         stationName: "Downtown Largo",
         displayName: "G05"
+    },
+    '76': {
+        color: "black",
+        stationName: "Vienna (NP)",
+        displayName: "K08"
+    },
+    '77': {
+        color: "black",
+        stationName: "Downtown Largo (NP)",
+        displayName: "G05"
+    },
+    '79': {
+        color: "black",
+        stationName: "Franconia-Springfield (NP)",
+        displayName: "J03"
+    },
+    '87': {
+        color: "black",
+        stationName: "Shady Grove Yard",
+        displayName: "A99"
     },
     '92': {
         color: "black",
@@ -75,6 +105,11 @@ window.destinations = {
         color: "black",
         stationName: "Branch Avenue Yard",
         displayName: "F99"
+    },
+    '97': {
+        color: "black",
+        stationName: "Huntington (NP)",
+        displayName: "C15"
     },
     '99': {
         color: "black",

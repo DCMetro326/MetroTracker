@@ -27,7 +27,7 @@ window.destinations = {
         displayName: "K08"
     },
     '31': {
-        color: "yellow",
+        color: "#d4bf06",
         stationName: "Huntington",
         displayName: "C15"
     },
@@ -37,12 +37,12 @@ window.destinations = {
         displayName: "E10"
     },
     '51': {
-        color: "silver",
+        color: "#777b7d",
         stationName: "Downtown Largo",
         displayName: "G05"
     },
     '68': {
-        color: "silver",
+        color: "#777b7d",
         stationName: "Ashburn",
         displayName: "N12"
     },

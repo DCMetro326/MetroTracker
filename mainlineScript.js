@@ -107,8 +107,13 @@ async function loadMainline() {
                 const lbl = document.createElement("div");
                 lbl.className = "dest-label";
 
+                // Create the destination label using a span for DestCode
+                const destCodeSpan = document.createElement("span");
+                destCodeSpan.textContent = destCodeString;  // DestCode
+
                 // Set the text and color as specified in the destinations.js
-                lbl.textContent = `${destCodeString} - ${destinationInfo.stationName} (${destinationInfo.displayName})`;
+                lbl.appendChild(destCodeSpan);
+                lbl.innerHTML += ` - ${destinationInfo.stationName} (${destinationInfo.displayName})`;
                 lbl.style.color = destinationInfo.color;  // Apply the color
 
                 grid.appendChild(lbl);

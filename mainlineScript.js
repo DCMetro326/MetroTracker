@@ -93,12 +93,23 @@ async function loadMainline() {
             }
 
             // ============================================
-            // 3) DestCode label (right side)
+            // 3) DestCode label (right side with station info)
             // ============================================
-            const lbl = document.createElement("div");
-            lbl.className = "dest-label";
-            lbl.textContent = consist.DestCode || "";
-            grid.appendChild(lbl);
+            const destCode = consist.DestCode || "";
+
+            // Check if the DestCode exists in the destinations data
+            const destinationInfo = window.destinations[destCode];
+
+            if (destinationInfo) {
+                const lbl = document.createElement("div");
+                lbl.className = "dest-label";
+
+                // Set the text and color as specified in the destinations.js
+                lbl.textContent = `${destCode} - "${destinationInfo.stationName}" ("${destinationInfo.displayName}")`;
+                lbl.style.color = destinationInfo.color;  // Apply the color
+
+                grid.appendChild(lbl);
+            }
         });
 
     } catch (err) {

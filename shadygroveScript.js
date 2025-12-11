@@ -11,6 +11,8 @@ const right = document.getElementById("rightGrid");
 
 const leftTracks = ["1","2","3","4","5","6","7","7a","8a","9a","10"];
 leftTracks.forEach(t => T.buildLeftRow(left, 4, t));
+T.buildLeftRow(left, 1, "S1");
+T.buildLeftRow(left, 1, "S2");
 
 
 // ============================================

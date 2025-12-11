@@ -45,13 +45,18 @@
         opacity: 0;
     }
 
+    /* DestCode label (station and display names) */
     .dest-label {
         font-size: 14px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: black;
+        white-space: nowrap; /* Prevent wrapping of the text */
+        overflow: hidden;
+        text-overflow: ellipsis; /* Add ellipsis if text overflows */
+        display: inline-block;
+        margin-top: 2px;
         font-weight: bold;
+        text-align: center;
+        width: 100%; /* Ensures enough space */
+        word-wrap: break-word;
     }
 </style>
 <link rel="stylesheet" href="specialTrains.css">

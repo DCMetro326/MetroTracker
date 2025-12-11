@@ -34,6 +34,12 @@
     font-weight: bold;
 }
 
+.special-ad {
+    background-color: #9b60bf !important;
+    color: black !important;
+    font-weight: bold;
+}
+
 .special-wrap {
     background-color: #bf3651 !important;
     color: white !important;

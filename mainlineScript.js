@@ -109,6 +109,13 @@ async function loadMainline() {
                 lbl.style.color = destinationInfo.color;  // Apply the color
 
                 grid.appendChild(lbl);
+            } else {
+                // Optionally, add a fallback if DestCode is not found in destinations
+                const lbl = document.createElement("div");
+                lbl.className = "dest-label";
+                lbl.textContent = `${destCode} - Unknown Destination`; // Fallback text
+                lbl.style.color = "gray"; // Default color for unknown
+                grid.appendChild(lbl);
             }
         });
 

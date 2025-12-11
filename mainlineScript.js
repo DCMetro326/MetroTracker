@@ -97,15 +97,18 @@ async function loadMainline() {
             // ============================================
             const destCode = consist.DestCode || "";
 
+            // Ensure destCode is a string, just in case it is missing or null
+            const destCodeString = String(destCode).trim();
+
             // Check if the DestCode exists in the destinations data
-            const destinationInfo = window.destinations[destCode];
+            const destinationInfo = window.destinations[destCodeString];
 
             if (destinationInfo) {
                 const lbl = document.createElement("div");
                 lbl.className = "dest-label";
 
                 // Set the text and color as specified in the destinations.js
-                lbl.textContent = `${destCode} - "${destinationInfo.stationName}" ("${destinationInfo.displayName}")`;
+                lbl.textContent = `${destCodeString} - ${destinationInfo.stationName} (${destinationInfo.displayName})`;
                 lbl.style.color = destinationInfo.color;  // Apply the color
 
                 grid.appendChild(lbl);
@@ -113,7 +116,7 @@ async function loadMainline() {
                 // Optionally, add a fallback if DestCode is not found in destinations
                 const lbl = document.createElement("div");
                 lbl.className = "dest-label";
-                lbl.textContent = `${destCode} - Unknown Destination`; // Fallback text
+                lbl.textContent = `${destCodeString} - Unknown Destination`; // Fallback text
                 lbl.style.color = "gray"; // Default color for unknown
                 grid.appendChild(lbl);
             }

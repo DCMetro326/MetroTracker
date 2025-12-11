@@ -31,6 +31,11 @@ window.destinations = {
         stationName: "Vienna",
         displayName: "K08"
     },
+    '28': {
+        color: "#e8cd02",
+        stationName: "Mt Vernon Sq",
+        displayName: "E01"
+    },
     '31': {
         color: "#e8cd02",
         stationName: "Huntington",

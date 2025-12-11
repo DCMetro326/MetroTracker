@@ -27,9 +27,14 @@ window.destinations = {
         displayName: "K08"
     },
     '31': {
-        color: "#d4bf06",
+        color: "#e8cd02",
         stationName: "Huntington",
         displayName: "C15"
+    },
+    '43': {
+        color: "green",
+        stationName: "Branch Avenue",
+        displayName: "F11"
     },
     '44': {
         color: "green",

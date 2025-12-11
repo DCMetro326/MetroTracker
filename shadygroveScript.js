@@ -57,6 +57,8 @@ const map = {
     "08A":"8a",
     "09A":"9a",
     "10":"10",
+    "S1":"S1",
+    "S2":"S2",
 
     // Special two-side variants
     "10A":"10A",

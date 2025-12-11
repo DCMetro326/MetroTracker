@@ -52,19 +52,25 @@
         justify-content: center;
         align-items: center;
     }
-
+    
     /* DestCode label (station and display names) */
     .dest-label {
         font-size: 14px;
-        white-space: nowrap; /* Prevent wrapping of the text */
+        display: flex;
+        justify-content: flex-start; /* Aligns text to the left */
+        align-items: center;
+        color: inherit; /* Inherit color from JS */
+        width: 100%; /* Ensures enough space */
+        margin-top: 2px;
+        word-wrap: break-word;
+        white-space: nowrap; /* Prevent wrapping */
         overflow: hidden;
         text-overflow: ellipsis; /* Add ellipsis if text overflows */
-        display: inline-block;
-        margin-top: 2px;
+    }
+    
+    .dest-label span {
+        margin-right: 5px; /* Add some space between the destCode and the station */
         font-weight: bold;
-        text-align: center;
-        width: 100%; /* Ensures enough space */
-        word-wrap: break-word;
     }
 </style>
 <link rel="stylesheet" href="specialTrains.css">

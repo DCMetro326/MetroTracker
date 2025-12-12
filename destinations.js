@@ -41,6 +41,11 @@ window.destinations = {
         stationName: "Huntington",
         displayName: "C15"
     },
+    '34': {
+        color: "#777b7d",
+        stationName: "Dulles Airport",
+        displayName: "N10"
+    },
     '43': {
         color: "green",
         stationName: "Branch Avenue",

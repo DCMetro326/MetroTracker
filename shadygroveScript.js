@@ -20,6 +20,7 @@ T.buildLeftRow(left, 1, "S2");
 // ============================================
 
 const rightTracks = [
+    {label:"10C", cells:5},
     {label:"10B", cells:5},
     {label:"10A", cells:5},
     {label:"10",  cells:5},
@@ -63,6 +64,7 @@ const map = {
     // Special two-side variants
     "10A":"10A",
     "10B":"10B",
+    "10C":"10C",
 
     // Right grid numeric tracks
     "11":"11",

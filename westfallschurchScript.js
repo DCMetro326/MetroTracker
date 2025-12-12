@@ -22,8 +22,10 @@ for (let t = 16; t <= 21; t++) {
 // T1 - 4 trains?
 T.buildLeftRow(left, 4, "T1");
 
-// S1 - 3 trains?
+// S1-3 - 3 trains?
 T.buildLeftRow(left, 3, "S1");
+T.buildLeftRow(left, 3, "S2");
+T.buildLeftRow(left, 3, "S3");
 
 
 // ===================================================
@@ -89,6 +91,8 @@ map["1B"] = "1b";
 map["1C"] = "1c";
 map["T1"] = "T1";
 map["S1"] = "S1";
+map["S2"] = "S2";
+map["S3"] = "S3";
 
 
 

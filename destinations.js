@@ -1,6 +1,11 @@
 // destinations.js
 
 window.destinations = {
+    '05': {
+        color: "red",
+        stationName: "Farragut North",
+        displayName: "A02"
+    },
     '12': {
         color: "red",
         stationName: "Shady Grove",

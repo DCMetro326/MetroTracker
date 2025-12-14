@@ -24,9 +24,11 @@ for (let t = 17; t <= 21; t++) {
     T.buildLeftRow(left, 4, t.toString());
 }
 
-// Tracks S1 & S2 : 3 trains each?
-T.buildLeftRow(left, 3, "S1");
-T.buildLeftRow(left, 3, "S2");
+// Tracks S1-4 : 4 trains each?
+T.buildLeftRow(left, 4, "S1");
+T.buildLeftRow(left, 4, "S2");
+T.buildLeftRow(left, 4, "S3");
+T.buildLeftRow(left, 4, "S4");
 
 
 // ===================================================
@@ -78,6 +80,8 @@ for (let i = 1; i <= 21; i++) {
 map["6A"] = "6a";
 map["S1"] = "S1";
 map["S2"] = "S2";
+map["S3"] = "S3";
+map["S4"] = "S4";
 
 // ===================================================
 // LOAD WMATA DATA FOR NEW CARROLLTON

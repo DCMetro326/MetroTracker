@@ -29,7 +29,7 @@ for (let t = 10; t <= 12; t++) {
 T.buildLeftRow(left, 2, "13");
 
 // Wash Track WT: 3 Trains
-T.buildLeftRow(left, 3, "WT");
+T.buildLeftRow(left, 4, "WT");
 
 // ===================================================
 // RIGHT SIDE TRACKS

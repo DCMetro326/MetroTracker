@@ -21,6 +21,9 @@ T.buildRightRow(right, 6, "41");
 // Track 44: 2 trains
 T.buildRightRow(right, 2, "44");
 
+// Track 45: 3 trains
+T.buildRightRow(right, 3, "45");
+
 
 // ===================================================
 // TRACK MAP (handles zero-padding 41/42/43 from API)

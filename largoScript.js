@@ -18,8 +18,8 @@ T.buildRightRow(right, 5, "43");
 // Track 41: 6 trains
 T.buildRightRow(right, 6, "41");
 
-// Track 44: 2 trains
-T.buildRightRow(right, 2, "44");
+// Track 44: 3 trains
+T.buildRightRow(right, 3, "44");
 
 // Track 45: 3 trains
 T.buildRightRow(right, 3, "45");

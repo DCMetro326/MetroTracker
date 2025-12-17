@@ -16,8 +16,8 @@ T.buildLeftRow(left, 4, "6n");
 T.buildLeftRow(left, 4, "7n");
 T.buildLeftRow(left, 1, "P1");
 T.buildLeftRow(left, 1, "P2");
-T.buildLeftRow(left, 3, "S1");
-T.buildLeftRow(left, 3, "S2");
+T.buildLeftRow(left, 4, "S1");
+T.buildLeftRow(left, 4, "S2");
 
 
 // Build right rows

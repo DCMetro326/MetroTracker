@@ -9,8 +9,11 @@ const right = document.getElementById("rightGrid");
 // BUILD LEFT-SIDE SPECIALIZED ROWS
 // ============================================
 
-const leftTracks = ["1","2","3","4","5","6","7","7a","8a","9a","10"];
+const leftTracks = ["1","2","3"];
 leftTracks.forEach(t => T.buildLeftRow(left, 4, t));
+T.buildLeftRow(left, 5, "4");
+const leftTracks2 = ["5","6","7","7a","8a","9a","10"];
+leftTracks2.forEach(t => T.buildLeftRow(left, 4, t));
 T.buildLeftRow(left, 4, "S1");
 T.buildLeftRow(left, 4, "S2");
 

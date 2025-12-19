@@ -7,7 +7,7 @@ const right = document.getElementById("rightGrid");
 
 // Build left rows
 T.buildLeftRow(left, 4, "1n");
-T.buildLeftRow(left, 4, "2n");
+T.buildLeftRow(left, 5, "2n");
 T.buildLeftRow(left, 5, "3n");
 T.buildLeftRow(left, 5, "4n");
 T.buildLeftRow(left, 5, "5n");

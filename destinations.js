@@ -96,6 +96,11 @@ window.destinations = {
         stationName: "Franconia-Springfield (NP)",
         displayName: "J03"
     },
+    '84': {
+        color: "black",
+        stationName: "Brentwood Yard",
+        displayName: "B99"
+    },
     '85': {
         color: "black",
         stationName: "Ashburn (NP)",

@@ -106,6 +106,11 @@ window.destinations = {
         stationName: "Ashburn (NP)",
         displayName: "N12"
     },
+    '86': {
+        color: "black",
+        stationName: "Glenmont Yard",
+        displayName: "B98"
+    },
     '87': {
         color: "black",
         stationName: "Shady Grove Yard",

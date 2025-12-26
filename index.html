@@ -2,54 +2,70 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>16x8 INDEX Grid with Row Numbers</title>
+<title>MetroTracker</title>
+
 <style>
     body {
         font-family: Arial, sans-serif;
+        margin: 0;
         padding: 20px;
+        background: #f7f7f7;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
     }
 
     .container {
         display: grid;
-        grid-template-columns: repeat(9, auto); /* 8 boxes + number column */
-        gap: 8px;
-        align-items: center;
-    }
-
-    .row-number {
-        font-size: 18px;
-        padding-left: 10px;
+        grid-template-columns: repeat(8, auto) 40px; /* 8 cells + label */
+        row-gap: 6px;
+        column-gap: 2px;
+        justify-content: center;
     }
 
     .cell {
-        width: 75px;        /* 3:4 proportion → height = width * (4/3) */
-        height: 100px;
+        width: 70px;
+        height: 28px;
         border: 2px solid black;
-        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        font-weight: bold;
     }
+
+    .spacer {
+        width: 6px;
+        height: 6px;
+        opacity: 0;
+    }
+
+    .row-number {
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
 </style>
+<link rel="stylesheet" href="specialTrains.css">
 </head>
 <body>
 
-<h2>16 × 8 Grid of 3:4 Rectangles</h2>
+    <h2>MetroTracker</h2>
 
-<div class="container" id="grid"></div>
-
-<script>
-    const grid = document.getElementById("grid");
-
-    for (let r = 16; r >= 1; r--) {
-        for (let c = 1; c <= 8; c++) {
-            const cell = document.createElement("div");
-            cell.className = "cell";
-            grid.appendChild(cell);
-        }
-        const label = document.createElement("div");
-        label.className = "row-number";
-        label.textContent = r;
-        grid.appendChild(label);
-    }
-</script>
+    <a href="https://dcmetro326.github.io/MetroTracker/shadygrove.html">A99 Shady Grove Yard</a>
+    <a href="https://dcmetro326.github.io/MetroTracker/brentwood.html">B98 Brentwood Yard</a>
+    <a href="https://dcmetro326.github.io/MetroTracker/glenmont.html">B99 Glenmont Yard</a>
+    <a href="https://dcmetro326.github.io/MetroTracker/alexandria.html">C99 Alexandria Yard</a>
+    <a href="https://dcmetro326.github.io/MetroTracker/newcarrollton.html">D99 Glenmont Yard</a>
+    <a href="https://dcmetro326.github.io/MetroTracker/greenbelt.html">E99 Greenbelt Yard</a
+    <a href="https://dcmetro326.github.io/MetroTracker/branchave.html">F99 Branch Ave Yard</a>
+    <a href="https://dcmetro326.github.io/MetroTracker/largo.html">G98 Largo Tail Tracks</a>
+    <a href="https://dcmetro326.github.io/MetroTracker/westfallschurch.html">K99 West Falls Church Yard</a>
+    <a href="https://dcmetro326.github.io/MetroTracker/dulles.html">N99 Dulles Yard</a>
 
 </body>
 </html>

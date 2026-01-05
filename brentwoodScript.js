@@ -28,6 +28,9 @@ for (let t = 10; t <= 12; t++) {
 // Track 13 : 2 trains
 T.buildLeftRow(left, 2, "13");
 
+// S1 : 2 trains
+T.buildLeftRow(left, 2, "S1");
+
 // Wash Track WT: 3 Trains
 T.buildLeftRow(left, 4, "WT");
 
@@ -76,6 +79,7 @@ for (let i = 1; i <= 21; i++) {
 map["09A"] = "9a";
 map["09B"] = "9b";
 map["09C"] = "9c";
+map["S1"] = "S1";
 map["WT"] = "WT";
 
 

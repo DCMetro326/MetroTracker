@@ -10,10 +10,10 @@ const right = document.getElementById("rightGrid");
 // ============================================
 
 // 2n → 2 trains
-T.buildLeftRow(left, 3, "2n");
+T.buildLeftRow(left, 4, "2n");
 
 // 1n → 2 trains
-T.buildLeftRow(left, 3, "1n");
+T.buildLeftRow(left, 4, "1n");
 
 
 // ============================================

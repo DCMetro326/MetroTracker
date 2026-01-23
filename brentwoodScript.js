@@ -46,6 +46,9 @@ for (let t = 1; t <= 5; t++) {
 // Track 6: 5 trains
 T.buildRightRow(right, 5, "6");
 
+// Track 16: 3 trains
+T.buildRightRow(right, 3, "16");
+
 // Tracks 17-18: 5 trains each
 for (let t = 17; t <= 18; t++) {
     T.buildRightRow(right, 5, t.toString());

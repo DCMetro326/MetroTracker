@@ -10,21 +10,21 @@ const right = document.getElementById("rightGrid");
 // LEFT SIDE TRACKS
 // ===================================================
 
-// Tracks 1 → 2 : 4 trains each
+// Tracks 1-2: 4 trains each
 for (let t = 1; t <= 2; t++) {
     T.buildLeftRow(left, 4, t.toString());
 }
 
-// Tracks 6 & 6A : 3 trains each?
+// Tracks 6-6A: 3 trains each?
 T.buildLeftRow(left, 3, "6");
 T.buildLeftRow(left, 3, "6A");
 
-// Tracks 17 → 21 : 4 trains each
+// Tracks 17-21: 4 trains each
 for (let t = 17; t <= 21; t++) {
     T.buildLeftRow(left, 4, t.toString());
 }
 
-// Tracks S1-4 : 4 trains each?
+// Tracks S1-S4: 4 trains each?
 T.buildLeftRow(left, 4, "S1");
 T.buildLeftRow(left, 4, "S2");
 T.buildLeftRow(left, 4, "S3");
@@ -35,56 +35,53 @@ T.buildLeftRow(left, 4, "S4");
 // RIGHT SIDE TRACKS
 // ===================================================
 
-// Track 7 → 5 trains
+// Track 7: 5 trains
 T.buildRightRow(right, 5, "7");
 
-// Tracks 8 → 9 : 6 trains each
+// Tracks 8-9: 6 trains each
 for (let t = 8; t <= 9; t++) {
     T.buildRightRow(right, 6, t.toString());
 }
 
-// Track 10 → 7 trains
+// Track 10: 7 trains
 T.buildRightRow(right, 7, "10");
 
-// Track 11 → 8 trains
+// Track 11: 8 trains
 T.buildRightRow(right, 8, "11");
 
-// Track 12 → 7 trains
+// Track 12: 7 trains
 T.buildRightRow(right, 7, "12");
 
-// Track 13 → 6 trains
+// Track 13: 6 trains
 T.buildRightRow(right, 6, "13");
 
-// Tracks 14 → 16 : 5 trains each
+// Tracks 14-16: 5 trains each
 for (let t = 14; t <= 16; t++) {
     T.buildRightRow(right, 5, t.toString());
 }
 
 
 // ===================================================
-// TRACK MAP (supports numeric & zero-padded formats)
+// TRACK MAP
 // ===================================================
 
 const map = {};
 
-// Auto-generate mapping for 1–21
+// Numeric tracks 1–21
 for (let i = 1; i <= 21; i++) {
-    const normal = i.toString();            // "7"
-    const padded2 = normal.padStart(2, "0"); // "07"
+    const normal = i.toString();            // "1"
+    const padded2 = normal.padStart(2, "0"); // "01"
 
     map[normal] = normal;
     map[padded2] = normal;
 }
 
-// Add suffix tracks explicitly
+// Special tracks
 map["6A"] = "6a";
 map["S1"] = "S1";
 map["S2"] = "S2";
 map["S3"] = "S3";
 map["S4"] = "S4";
 
-// ===================================================
-// LOAD WMATA DATA FOR NEW CARROLLTON
-// ===================================================
 
 T.loadWMATA("New Carrollton Yard", map);

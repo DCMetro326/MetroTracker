@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Greenbelt Yard</title>
 <style>
     body {
@@ -21,21 +20,21 @@
     .yard-layout {
         display: flex;
         justify-content: center;
-        gap: 60px;
+        gap: 40px;
         align-items: flex-start;
     }
 
-    /* Both grids use identical structure */
+    /* Train yard grids */
     #leftGrid {
         display: grid;
-        grid-template-columns: 30px repeat(8, auto);   /* label on the LEFT */
+        grid-template-columns: 30px repeat(8, auto);
         column-gap: 2px;
         row-gap: 4px;
     }
     
     #rightGrid {
         display: grid;
-        grid-template-columns: repeat(8, auto) 30px;   /* label on the RIGHT */
+        grid-template-columns: repeat(8, auto) 30px;
         column-gap: 2px;
         row-gap: 4px;
     }
@@ -62,30 +61,9 @@
     .row-number {
         font-size: 14px;
         display: flex;
-        justify-content: center;     /* center horizontally */
-        align-items: center;         /* center vertically */
+        justify-content: center;
+        align-items: center;
     }
-
-    /* --- MOBILE / SMALL SCREEN LAYOUT FIX --- */
-    @media screen and (max-width: 700px) {
-    
-        .yard-layout {
-            flex-direction: column;      /* stack vertically */
-            align-items: center;
-            gap: 20px;                   /* smaller gap */
-        }
-    
-        #leftGrid, #rightGrid {
-            transform: scale(0.9);       /* optional: slightly shrink to fit */
-            transform-origin: top center;
-        }
-    
-        body {
-            padding: 10px;
-        }
-    }
-
-
 </style>
 <link rel="stylesheet" href="specialTrains.css">
 </head>

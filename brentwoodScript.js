@@ -28,8 +28,8 @@ for (let t = 10; t <= 12; t++) {
 // Track 13: 2 trains
 T.buildLeftRow(left, 2, "13");
 
-// S1: 2 trains
-T.buildLeftRow(left, 2, "S1");
+// S1: 3 trains
+T.buildLeftRow(left, 3, "S1");
 
 // Wash Track WT: 4 Trains
 T.buildLeftRow(left, 4, "WT");

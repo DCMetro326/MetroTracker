@@ -17,10 +17,9 @@
         margin-bottom: 20px;
     }
 
-    /* Use same yard-style right-grid layout */
     #mainGrid {
         display: grid;
-        grid-template-columns: repeat(8, auto) 40px;  /* 8 cells + label on right */
+        grid-template-columns: repeat(8, auto) 40px;
         column-gap: 2px;
         row-gap: 4px;
         justify-content: center;
@@ -45,7 +44,6 @@
         opacity: 0;
     }
 
-    /* The row number labels */
     .row-number {
         font-size: 14px;
         display: flex;
@@ -57,20 +55,20 @@
     .dest-label {
         font-size: 14px;
         display: flex;
-        justify-content: flex-start; /* Aligns text to the left */
+        justify-content: flex-start;
         align-items: center;
-        color: inherit; /* Inherit color from JS */
-        width: 600%; /* Ensures enough space */
+        color: inherit;
+        width: 600%;
         margin-top: 2px;
         margin-left: 4px;
         word-wrap: break-word;
-        white-space: nowrap; /* Prevent wrapping */
+        white-space: nowrap;
         overflow: hidden;
-        text-overflow: ellipsis; /* Add ellipsis if text overflows */
+        text-overflow: ellipsis;
     }
     
     .dest-label span {
-        margin-right: 5px; /* Add some space between the destCode and the station */
+        margin-right: 5px;
         font-weight: bold;
     }
 </style>
@@ -80,7 +78,6 @@
 
 <h2>Mainline Trains</h2>
 
-<!-- Single grid, built exactly like a yard right-side grid -->
 <div id="mainGrid"></div>
 
 <script src="destinations.js"></script>

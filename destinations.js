@@ -76,6 +76,11 @@ window.destinations = {
         stationName: "New Carrollton",
         displayName: "D13"
     },
+    '58': {
+        color: "blue",
+        stationName: "Smithsonian",
+        displayName: "D02"
+    },
     '68': {
         color: "#777b7d",
         stationName: "Ashburn",

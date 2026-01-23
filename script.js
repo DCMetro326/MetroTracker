@@ -1,12 +1,10 @@
-// =========================================
-// SHARED ENGINE — GLOBAL NAMESPACE
-// =========================================
+// script.js
 
 window.YardTools = {
     rowMap: {},
 
     // Store unassigned trains for popups
-    unassigned: [],   // NEW ALERT FEATURE
+    unassigned: [],
 
     buildLeftRow(grid, cellCount, label) {
         const { rowMap } = this;
@@ -60,9 +58,6 @@ window.YardTools = {
         rowMap[label] = cells;
     },
 
-    // ======================================
-    // ASSIGN TRAIN (with overflow detection + external special train list)
-    // ======================================
     assignTrain(track, train, extraClass = null) {
         const cells = this.rowMap[track];
         if (!cells) return false;
@@ -74,18 +69,15 @@ window.YardTools = {
                 // Place train text
                 cells[i].textContent = train;
 
-                // NEW — apply special class
                 if (extraClass) {
                     cells[i].classList.add(extraClass);
                 }
 
-                // NEW — save after each assignment
                 this.saveState();
     
-                // Load special train mapping
                 const types = window.specialTrainTypes || {};
     
-                // Break train pair ("1001-2000")
+                // Break train pair
                 const segments = train.split("-").map(s => s.trim());
     
                 // Detect which type applies
@@ -113,11 +105,6 @@ window.YardTools = {
         return false;
     },
 
-
-
-    // ======================================
-    // NEW ALERT FUNCTION
-    // ======================================
     showAlerts() {
         if (this.unassigned.length === 0) return;
 
@@ -131,9 +118,6 @@ window.YardTools = {
         this.unassigned = []; // clear after showing
     },
 
-    // ======================================
-    // WMATA LOADER WITH UNASSIGNED DETECTION
-    // ======================================
     async loadWMATA(yardName, map) {
         try {
             const res = await fetch(
@@ -142,7 +126,6 @@ window.YardTools = {
             const raw = await res.text();
             const data = JSON.parse(raw);
 
-            // CLEAR THE GRID BEFORE NEW DATA FILLS IT
             this.clearCells();
 
             const consists =
@@ -164,7 +147,7 @@ window.YardTools = {
 
                 const cssClass = isICE ? "id-ice" : null;
 
-                // 1️⃣ TRACK NOT IN MAP → ALERT
+                // Track not in map
                 if (!mapped) {
                     this.unassigned.push({
                         track: trackName,
@@ -174,13 +157,13 @@ window.YardTools = {
                     continue;
                 }
 
-                // 2️⃣ TRY TO PLACE CARS IN CELLS
+                // Place trains in tracks
                 const segments = cars.split(".");
 
                 for (const seg of segments) {
                     const success = this.assignTrain(mapped, seg, cssClass);
 
-                    // 2️⃣ NO SPACE AVAILABLE → ALERT
+                    // Train does not fit track size
                     if (!success) {
                         this.unassigned.push({
                             track: trackName,
@@ -199,9 +182,7 @@ window.YardTools = {
         }
     },
 
-    // ======================================
-    // SAVE CURRENT GRID STATE (text + classes)
-    // ======================================
+    // save
     saveState() {
         const state = {};
     
@@ -217,10 +198,7 @@ window.YardTools = {
     },
     
     
-    // ======================================
-    // RESTORE PREVIOUS GRID STATE
-    // (text + CSS classes)
-    // ======================================
+    // restore
     restoreState() {
         const saved = localStorage.getItem("yardState");
         if (!saved) return;
@@ -238,28 +216,22 @@ window.YardTools = {
                 if (cell.classList.contains("cell")) {
                     cell.textContent = info.text;
     
-                    // remove old special classes
                     cell.classList.forEach(cls => {
                         if (cls !== "cell") cell.classList.remove(cls);
                     });
     
-                    // restore special classes
                     info.classes.forEach(cls => cell.classList.add(cls));
                 }
             });
         }
     },
 
-    // ======================================
-    // CLEAR TEXT + SPECIAL CLASSES (but keep grid structure)
-    // ======================================
     clearCells() {
         for (const cells of Object.values(this.rowMap)) {
             cells.forEach(cell => {
                 if (cell.classList.contains("cell")) {
                     cell.textContent = "";
     
-                    // Remove all special classes, keep only "cell"
                     cell.className = "cell";
                 }
             });

@@ -5,23 +5,37 @@ const T = window.YardTools;
 const left = document.getElementById("leftGrid");
 const right = document.getElementById("rightGrid");
 
-// ============================================
-// BUILD LEFT-SIDE SPECIALIZED ROWS
-// ============================================
+// ===================================================
+// LEFT SIDE TRACKS
+// ===================================================
 
-const leftTracks = ["1","2","3"];
-leftTracks.forEach(t => T.buildLeftRow(left, 4, t));
+// Tracks 1-3: 4 trains each
+for (let t = 1; t <= 3; t++) {
+    T.buildLeftRow(left, 4, t.toString());
+}
+
+// Track 4: 5 trains
 T.buildLeftRow(left, 5, "4");
-const leftTracks2 = ["5","6","7","7a","8a","9a","10"];
-leftTracks2.forEach(t => T.buildLeftRow(left, 4, t));
+
+// Tracks 5-7: 4 trains each
+for (let t = 5; t <= 7; t++) {
+    T.buildLeftRow(left, 4, t.toString());
+}
+
+// Tracks 7a,8a,9a,10,S1,S2: 4 trains each
+T.buildLeftRow(left, 4, "7a");
+T.buildLeftRow(left, 4, "8a");
+T.buildLeftRow(left, 4, "9a");
+T.buildLeftRow(left, 4, "10");
 T.buildLeftRow(left, 4, "S1");
 T.buildLeftRow(left, 4, "S2");
 
 
-// ============================================
-// BUILD RIGHT-SIDE MAIN ROWS
-// ============================================
+// ===================================================
+// RIGHT SIDE TRACKS
+// ===================================================
 
+// Cell List Test
 const rightTracks = [
     {label:"10C", cells:5},
     {label:"10B", cells:5},
@@ -43,13 +57,11 @@ const rightTracks = [
 rightTracks.forEach(t => T.buildRightRow(right, t.cells, t.label));
 
 
-// ============================================
-// TRACK NAME MAPPING
-// Supports: "1", "01", "002", "10A", etc.
-// ============================================
+// ===================================================
+// TRACK MAP
+// ===================================================
 
 const map = {
-    // Left grid tracks
     "1":"1",
     "2":"2",
     "3":"3",
@@ -63,13 +75,9 @@ const map = {
     "10":"10",
     "S1":"S1",
     "S2":"S2",
-
-    // Special two-side variants
     "10A":"10A",
     "10B":"10B",
     "10C":"10C",
-
-    // Right grid numeric tracks
     "11":"11",
     "12":"12",
     "13":"13",
@@ -83,18 +91,14 @@ const map = {
     "21":"21"
 };
 
-// Auto-generate padded versions for 1–21
+// Numeric tracks 1–21
 for (let i = 1; i <= 21; i++) {
     const normal = i.toString();           // "1"
-    const padded = normal.padStart(2, "0"); // "01"
+    const padded2 = normal.padStart(2, "0"); // "01"
 
-    map[normal] = i;     // "1" → 1
-    map[padded] = i;     // "01" → 1 (FIXES THE PROBLEM)
+    map[normal] = i;
+    map[padded2] = i;
 }
 
-
-// ============================================
-// LOAD WMATA DATA
-// ============================================
 
 T.loadWMATA("Shady Grove Yard", map);

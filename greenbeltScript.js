@@ -42,8 +42,8 @@ for (let i = 1; i <= 20; i++) {
     const normal = i.toString();        // "1"
     const padded = normal.padStart(2, "0"); // "01"
 
-    map[normal] = i;     // "1" → 1
-    map[padded] = i;     // "01" → 1 (FIXES THE PROBLEM)
+    map[normal] = i;
+    map[padded] = i;
 }
 
 T.loadWMATA("Greenbelt Yard", map);

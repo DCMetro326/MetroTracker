@@ -1,38 +1,36 @@
 // glenmontScript.js
 
-// Use the shared engine
 const T = window.YardTools;
 
-// Get the grid container for Glenmont
 const grid = document.getElementById("grid");
 
 // ============================================
-// BUILD GLENMONT YARD ROWS
+// GRID TRACKS
 // ============================================
 
-// ER1 – 4 cells
+// ER1: 4 trains
 T.buildRightRow(grid, 4, "ER1");
 
-// Y1 – Y3 → 5 cells each
+// Y1-Y3: 5 trains each
 for (let i = 1; i <= 3; i++) {
     T.buildRightRow(grid, 5, "Y" + i);
 }
 
-// Y4 → 6 cells
+// Y4: 6 trains
 T.buildRightRow(grid, 6, "Y4");
 
-// Y5 – Y7 → 7 cells each
+// Y5-Y7: 7 trains each
 for (let i = 5; i <= 7; i++) {
     T.buildRightRow(grid, 7, "Y" + i);
 }
 
-// Y8 – Y11 → 6 cells each
+// Y8-Y11: 6 trains each
 for (let i = 8; i <= 11; i++) {
     T.buildRightRow(grid, 6, "Y" + i);
 }
 
 // ============================================
-// TRACK NAME MAP (WMATA → display label)
+// TRACK MAP
 // ============================================
 
 const map = {
@@ -50,8 +48,5 @@ const map = {
     "Y11":"Y11"
 };
 
-// ============================================
-// LOAD WMATA DATA
-// ============================================
 
 T.loadWMATA("Glenmont Yard", map);

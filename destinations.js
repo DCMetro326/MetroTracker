@@ -81,6 +81,11 @@ window.destinations = {
         stationName: "Ashburn",
         displayName: "N12"
     },
+    '70': {
+        color: "orange",
+        stationName: "East Falls Church (Wiehle?)",
+        displayName: "K05"
+    },
     '72': {
         color: "blue",
         stationName: "Downtown Largo",

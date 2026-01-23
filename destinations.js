@@ -37,7 +37,7 @@ window.destinations = {
         displayName: "K08"
     },
     '24': {
-        color: "yellow",
+        color: "#e8cd02",
         stationName: "Greenbelt",
         displayName: "E10"
     },

@@ -49,27 +49,19 @@ async function loadMainline() {
             let segmentCount = Math.ceil(consist.ConsistLength / 2);
             segmentCount = Math.max(segmentCount, consist.Cars.length);
 
-            // ============================================
-            // 1) Left Spacers (Right Alignment)
-            // ============================================
+            
             for (let i = 0; i < (8 - segmentCount); i++) {
                 const spacer = document.createElement("div");
                 spacer.className = "spacer";
                 grid.appendChild(spacer);
             }
 
-            // ============================================
-            // 2) Build each train cell
-            // ============================================
             for (let i = 0; i < segmentCount; i++) {
                 const cars = consist.Cars[i] || "";
                 const cell = document.createElement("div");
                 cell.className = "cell";
                 cell.textContent = cars;
 
-                // --------------------------------------------
-                // SPECIAL TRAIN DETECTION (same as YardTools)
-                // --------------------------------------------
                 const segments = cars.split("-").map(s => s.trim());
 
                 let matchedType = null;
@@ -84,7 +76,6 @@ async function loadMainline() {
                     }
                 }
 
-                // Apply CSS class (special-typeA, etc)
                 if (matchedType) {
                     cell.classList.add(`special-${matchedType}`);
                 }
@@ -92,12 +83,8 @@ async function loadMainline() {
                 grid.appendChild(cell);
             }
 
-            // ============================================
-            // 3) DestCode label (right side with station info)
-            // ============================================
             const destCode = consist.DestCode || "";
 
-            // Ensure destCode is a string, just in case it is missing or null
             const destCodeString = String(destCode).trim();
 
             // Check if the DestCode exists in the destinations data
@@ -107,9 +94,8 @@ async function loadMainline() {
                 const lbl = document.createElement("div");
                 lbl.className = "dest-label";
 
-                // Create the destination label using a span for DestCode
                 const destCodeSpan = document.createElement("span");
-                destCodeSpan.textContent = destCodeString;  // DestCode
+                destCodeSpan.textContent = destCodeString;
 
                 // Set the text and color as specified in the destinations.js
                 lbl.appendChild(destCodeSpan);
@@ -118,11 +104,11 @@ async function loadMainline() {
 
                 grid.appendChild(lbl);
             } else {
-                // Optionally, add a fallback if DestCode is not found in destinations
+                // Destination not found
                 const lbl = document.createElement("div");
                 lbl.className = "dest-label";
-                lbl.textContent = `${destCodeString} - Unknown Destination`; // Fallback text
-                lbl.style.color = "gray"; // Default color for unknown
+                lbl.textContent = `${destCodeString} - Unknown Destination`;
+                lbl.style.color = "gray";
                 grid.appendChild(lbl);
             }
         });

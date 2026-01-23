@@ -10,81 +10,77 @@ const right = document.getElementById("rightGrid");
 // LEFT SIDE TRACKS
 // ===================================================
 
-// Tracks 7 → 9 : 4 trains each
+// Tracks 7-9: 4 trains each
 for (let t = 7; t <= 9; t++) {
     T.buildLeftRow(left, 4, t.toString());
 }
 
-// 9a, 9b, 9c : 3 trains each
+// 9a,9b,9c: 3 trains each
 T.buildLeftRow(left, 3, "9a");
 T.buildLeftRow(left, 3, "9b");
 T.buildLeftRow(left, 3, "9c");
 
-// Tracks 10 → 12 : 3 trains each
+// Tracks 10-12: 3 trains each
 for (let t = 10; t <= 12; t++) {
     T.buildLeftRow(left, 3, t.toString());
 }
 
-// Track 13 : 2 trains
+// Track 13: 2 trains
 T.buildLeftRow(left, 2, "13");
 
-// S1 : 2 trains
+// S1: 2 trains
 T.buildLeftRow(left, 2, "S1");
 
-// Wash Track WT: 3 Trains
+// Wash Track WT: 4 Trains
 T.buildLeftRow(left, 4, "WT");
 
 // ===================================================
 // RIGHT SIDE TRACKS
 // ===================================================
 
-// Tracks 1 → 5 : 4 trains each
+// Tracks 1-5: 4 trains each
 for (let t = 1; t <= 5; t++) {
     T.buildRightRow(right, 4, t.toString());
 }
 
-// Track 6 : 5 trains
+// Track 6: 5 trains
 T.buildRightRow(right, 5, "6");
 
-// Tracks 17 → 18 : 5 trains each
+// Tracks 17-18: 5 trains each
 for (let t = 17; t <= 18; t++) {
     T.buildRightRow(right, 5, t.toString());
 }
 
-// Track 19 : 4 trains
+// Track 19: 4 trains
 T.buildRightRow(right, 4, "19");
 
-// Tracks 20 → 21 : 3 trains each
+// Tracks 20-21: 3 trains each
 for (let t = 20; t <= 21; t++) {
     T.buildRightRow(right, 3, t.toString());
 }
 
 
 // ===================================================
-// TRACK MAP (numeric, zero-padded, alpha suffixes)
+// TRACK MAP
 // ===================================================
 
 const map = {};
 
 // Numeric tracks 1–21
 for (let i = 1; i <= 21; i++) {
-    const normal  = i.toString();           // "7"
-    const padded2 = normal.padStart(2, "0"); // "07"
+    const normal  = i.toString();           // "1"
+    const padded2 = normal.padStart(2, "0"); // "01"
 
     map[normal]  = normal;
     map[padded2] = normal;
 }
 
-// Alpha suffix tracks
+// Special Tracks
 map["09A"] = "9a";
 map["09B"] = "9b";
 map["09C"] = "9c";
 map["S1"] = "S1";
 map["WT"] = "WT";
 
-
-// ===================================================
-// LOAD WMATA DATA FOR THIS YARD
-// ===================================================
 
 T.loadWMATA("Brentwood Yard", map);

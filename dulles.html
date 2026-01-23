@@ -16,35 +16,28 @@
         margin-bottom: 20px;
     }
 
-    /* Two side-by-side grids */
+    /* Yard layout: left + right grids */
     .yard-layout {
         display: flex;
         justify-content: center;
-        gap: 60px;
+        gap: 40px;
         align-items: flex-start;
     }
 
-    /* Both grids use identical structure */
     #leftGrid {
         display: grid;
-        grid-template-columns: 30px repeat(8, auto);   /* label on the LEFT */
+        grid-template-columns: 40px repeat(8, auto);  /* label left */
         column-gap: 2px;
         row-gap: 4px;
     }
-    
+
     #rightGrid {
         display: grid;
-        grid-template-columns: repeat(8, auto) 30px;   /* label on the RIGHT */
+        grid-template-columns: repeat(8, auto) 40px;  /* label right */
         column-gap: 2px;
         row-gap: 4px;
     }
-    
-    .spacer {
-        width: 4px;
-        height: 4px;
-        opacity: 0;
-    }
-    
+
     .cell {
         width: 70px;
         height: 28px;
@@ -52,19 +45,23 @@
         box-sizing: border-box;
         font-size: 12px;
         font-weight: bold;
-        text-align: center;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    
+
+    .spacer {
+        width: 6px;
+        height: 6px;
+        opacity: 0;
+    }
+
     .row-number {
         font-size: 14px;
         display: flex;
-        justify-content: center;     /* center horizontally */
-        align-items: center;         /* center vertically */
+        justify-content: center;
+        align-items: center;
     }
-
 </style>
 <link rel="stylesheet" href="specialTrains.css">
 </head>
@@ -72,7 +69,7 @@
 
 <h2>Dulles Yard</h2>
 
-<!-- TWO GRIDS SIDE-BY-SIDE -->
+<!-- YARD LAYOUT LEFT + RIGHT -->
 <div class="yard-layout">
     <div class="container" id="leftGrid"></div>
     <div class="container" id="rightGrid"></div>

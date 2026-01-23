@@ -6,7 +6,7 @@ const right = document.getElementById("grid");
 
 
 // ===================================================
-// RIGHT SIDE TRACKS
+// GRID TRACKS
 // ===================================================
 
 // Track 42: 8 trains
@@ -26,24 +26,22 @@ T.buildRightRow(right, 3, "45");
 
 
 // ===================================================
-// TRACK MAP (handles zero-padding 41/42/43 from API)
+// TRACK MAP
 // ===================================================
 
 const map = {};
 
 function addTrack(num) {
     const n = num.toString();
-    map[n] = n;                    // "42"
-    map[n.padStart(2, "0")] = n;   // "42" → "42"
+    map[n] = n;
+    map[n.padStart(2, "0")] = n;
 }
 
 addTrack(41);
 addTrack(42);
 addTrack(43);
+addTrack(44);
+addTrack(45);
 
-
-// ===================================================
-// LOAD WMATA DATA FOR THIS YARD
-// ===================================================
 
 T.loadWMATA("Downtown Largo", map);

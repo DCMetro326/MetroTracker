@@ -13,7 +13,7 @@ T.buildLeftRow(left, 5, "4n");
 T.buildLeftRow(left, 5, "5n");
 T.buildLeftRow(left, 3, "5an");
 T.buildLeftRow(left, 4, "6n");
-T.buildLeftRow(left, 4, "7n");
+T.buildLeftRow(left, 6, "7n");
 T.buildLeftRow(left, 1, "P1");
 T.buildLeftRow(left, 1, "P2");
 T.buildLeftRow(left, 4, "S1");

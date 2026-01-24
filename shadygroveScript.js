@@ -14,11 +14,12 @@ for (let t = 1; t <= 3; t++) {
     T.buildLeftRow(left, 4, t.toString());
 }
 
-// Track 4: 5 trains
+// Tracks 4-5: 5 trains each
 T.buildLeftRow(left, 5, "4");
+T.buildLeftRow(left, 5, "5");
 
-// Tracks 5-7: 4 trains each
-for (let t = 5; t <= 7; t++) {
+// Tracks 6-7: 4 trains each
+for (let t = 6; t <= 7; t++) {
     T.buildLeftRow(left, 4, t.toString());
 }
 

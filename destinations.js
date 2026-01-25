@@ -116,6 +116,11 @@ window.destinations = {
         stationName: "Franconia-Springfield (NP)",
         displayName: "J03"
     },
+    '80': {
+        color: "black",
+        stationName: "Farragut North Pocket",
+        displayName: "A02"
+    },
     '84': {
         color: "black",
         stationName: "Brentwood Yard",

@@ -121,9 +121,14 @@ window.destinations = {
         stationName: "Farragut North Pocket",
         displayName: "A02"
     },
+    '83': {
+        color: "black",
+        stationName: "Brentwood Yard A",
+        displayName: "B99"
+    },
     '84': {
         color: "black",
-        stationName: "Brentwood Yard",
+        stationName: "Brentwood Yard B",
         displayName: "B99"
     },
     '85': {

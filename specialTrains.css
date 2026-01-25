@@ -1,3 +1,9 @@
+.special-ice {
+    border-color: #07a2ba !important;
+    color: #07a2ba !important;
+    font-weight: bold;
+}
+
 .special-preserve {
     background-color: #593421 !important;
     color: white !important;
@@ -55,12 +61,6 @@
 .special-mistake {
     border-color: orange !important;
     color: orange !important;
-    font-weight: bold;
-}
-
-.special-ice {
-    border-color: #07a2ba !important;
-    color: #07a2ba !important;
     font-weight: bold;
 }
 

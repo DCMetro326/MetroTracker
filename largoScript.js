@@ -24,6 +24,12 @@ T.buildRightRow(right, 3, "44");
 // Track 45: 3 trains
 T.buildRightRow(right, 3, "45");
 
+// Track 1 (Platform): 4 trains
+T.buildRightRow(right, 4, "1");
+
+// Track 2 (Platform): 4 trains
+T.buildRightRow(right, 4, "2");
+
 
 // ===================================================
 // TRACK MAP
@@ -42,6 +48,8 @@ addTrack(42);
 addTrack(43);
 addTrack(44);
 addTrack(45);
+addTrack(1);
+addTrack(2);
 
 
 T.loadWMATA("Downtown Largo", map);

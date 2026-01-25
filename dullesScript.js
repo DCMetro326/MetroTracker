@@ -12,7 +12,7 @@ const right = document.getElementById("rightGrid");
 
 // Shop Tracks SH1-SH5
 const shops = ["Sh1", "Sh2", "Sh3", "Sh4", "Sh5"];
-shops.forEach(sh => T.buildLeftRow(left, 3, sh));
+shops.forEach(sh => T.buildLeftRow(left, 4, sh));
 
 // Tracks S1-S2 : 3 trains each?
 T.buildLeftRow(left, 3, "S1");

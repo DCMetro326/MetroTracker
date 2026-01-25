@@ -61,6 +61,11 @@ window.destinations = {
         stationName: "West Falls Church",
         displayName: "K06"
     },
+    '36': {
+        color: "orange",
+        stationName: "Stadium-Armory",
+        displayName: "D08"
+    },
     '43': {
         color: "green",
         stationName: "Branch Avenue",

@@ -51,6 +51,6 @@ addTrack(greenbeltMap, "2", "Greenbelt2");
 
 T.clearCells();
 
-T.loadWMATA("Vienna", viennaMap);
-T.loadWMATA("Shady Grove", shadyGroveMap);
-T.loadWMATA("Greenbelt", greenbeltMap);
+T.loadWMATA("Vienna", viennaMap, { clear: false });
+T.loadWMATA("Shady Grove", shadyGroveMap, { clear: false });
+T.loadWMATA("Greenbelt", greenbeltMap, { clear: false });

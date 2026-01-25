@@ -29,8 +29,9 @@ for (let i = 8; i <= 11; i++) {
     T.buildRightRow(grid, 6, "Y" + i);
 }
 
-// S1: 4 trains
+// S1,S2: 4 trains
 T.buildRightRow(grid, 4, "S1");
+T.buildRightRow(grid, 4, "S2");
 
 // ============================================
 // TRACK MAP
@@ -49,7 +50,8 @@ const map = {
     "Y9":"Y9",
     "Y10":"Y10",
     "Y11":"Y11",
-    "S1":"S1"
+    "S1":"S1",
+    "S2":"S2"
 };
 
 

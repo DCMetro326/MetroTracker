@@ -49,6 +49,7 @@ addTrack(shadyGroveMap, "2", "ShadyGrove2");
 addTrack(greenbeltMap, "1", "Greenbelt1");
 addTrack(greenbeltMap, "2", "Greenbelt2");
 
+T.clearCells();
 
 T.loadWMATA("Vienna", viennaMap);
 T.loadWMATA("Shady Grove", shadyGroveMap);

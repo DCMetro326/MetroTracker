@@ -12,38 +12,44 @@ const greenbelt = document.getElementById("greenbelt");
 // ===================================================
 
 // Vienna
-T.buildRightRow(vienna, 4, "1");
-T.buildRightRow(vienna, 4, "2");
+T.buildRightRow(vienna, 4, "Vienna1");
+T.buildRightRow(vienna, 4, "Vienna2");
 
 // Shady Grove
-T.buildRightRow(shadyGrove, 4, "1");
-T.buildRightRow(shadyGrove, 4, "2");
+T.buildRightRow(shadyGrove, 4, "ShadyGrove1");
+T.buildRightRow(shadyGrove, 4, "ShadyGrove2");
 
 // Greenbelt
-T.buildRightRow(greenbelt, 4, "1");
-T.buildRightRow(greenbelt, 4, "2");
+T.buildRightRow(greenbelt, 4, "Greenbelt1");
+T.buildRightRow(greenbelt, 4, "Greenbelt2");
 
 
 // ===================================================
 // TRACK MAP
 // ===================================================
 
-const map = {};
+const viennaMap = {};
+const shadyGroveMap = {};
+const greenbeltMap = {};
 
-function addTrack(num) {
-    const n = num.toString();
-    map[n] = n;
-    map[n.padStart(2, "0")] = n;
+function addTrack(map, raw, mapped) {
+    map[raw] = mapped;
+    map[raw.padStart(2, "0")] = mapped;
 }
 
-addTrack(1);
-addTrack(2);
+// Vienna
+addTrack(viennaMap, "1", "Vienna-1");
+addTrack(viennaMap, "2", "Vienna-2");
 
-// Platform check
-function platformOnly(train) {
-    return train.StateName === "Platform";
-}
+// Shady Grove
+addTrack(shadyGroveMap, "1", "Shady-1");
+addTrack(shadyGroveMap, "2", "Shady-2");
 
-T.loadWMATA("Vienna", map, platformOnly);
-T.loadWMATA("Shady Grove", map, platformOnly);
-T.loadWMATA("Greenbelt", map, platformOnly);
+// Greenbelt
+addTrack(greenbeltMap, "1", "Greenbelt-1");
+addTrack(greenbeltMap, "2", "Greenbelt-2");
+
+
+T.loadWMATA("Vienna", viennaMap);
+T.loadWMATA("Shady Grove", shadyGroveMap);
+T.loadWMATA("Greenbelt", greenbeltMap);

@@ -38,16 +38,16 @@ function addTrack(map, raw, mapped) {
 }
 
 // Vienna
-addTrack(viennaMap, "1", "Vienna-1");
-addTrack(viennaMap, "2", "Vienna-2");
+addTrack(viennaMap, "1", "Vienna1");
+addTrack(viennaMap, "2", "Vienna2");
 
 // Shady Grove
-addTrack(shadyGroveMap, "1", "Shady-1");
-addTrack(shadyGroveMap, "2", "Shady-2");
+addTrack(shadyGroveMap, "1", "ShadyGrove1");
+addTrack(shadyGroveMap, "2", "ShadyGrove2");
 
 // Greenbelt
-addTrack(greenbeltMap, "1", "Greenbelt-1");
-addTrack(greenbeltMap, "2", "Greenbelt-2");
+addTrack(greenbeltMap, "1", "Greenbelt1");
+addTrack(greenbeltMap, "2", "Greenbelt2");
 
 
 T.loadWMATA("Vienna", viennaMap);

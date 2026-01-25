@@ -39,8 +39,8 @@ T.buildRightRow(newCarrollton, 4, "D1");
 T.buildRightRow(newCarrollton, 4, "D2");
 
 // Mt Vernon Sq
-T.buildRightRow(newCarrollton, 4, "E1");
-T.buildRightRow(newCarrollton, 4, "E2");
+T.buildRightRow(mtVernonSq, 4, "E1");
+T.buildRightRow(mtVernonSq, 4, "E2");
 
 // Greenbelt
 T.buildRightRow(greenbelt, 4, "E1 ");
@@ -104,60 +104,60 @@ function addTrack(map, raw, mapped) {
 }
 
 // Shady Grove
-addTrack(shadyGroveMap, "1", "ShadyGrove1");
-addTrack(shadyGroveMap, "2", "ShadyGrove2");
+addTrack(shadyGroveMap, "1", "A1");
+addTrack(shadyGroveMap, "2", "A2");
 
 // Glenmont
-addTrack(glenmontMap, "1", "Glenmont1");
-addTrack(glenmontMap, "2", "Glenmont2");
+addTrack(glenmontMap, "1", "B1");
+addTrack(glenmontMap, "2", "B2");
 
 // Huntington
-addTrack(huntingtonMap, "1", "Huntington1");
-addTrack(huntingtonMap, "2", "Huntington2");
+addTrack(huntingtonMap, "1", "C1");
+addTrack(huntingtonMap, "2", "C2");
 
 // New Carrollton
-addTrack(newCarrolltonMap, "1", "NewCarrollton1");
-addTrack(newCarrolltonMap, "2", "NewCarrollton2");
+addTrack(newCarrolltonMap, "1", "D1");
+addTrack(newCarrolltonMap, "2", "D2");
 
 // Mt Vernon Sq
-addTrack(mtVernonSqMap, "1", "MtVernonSq1");
-addTrack(mtVernonSqMap, "2", "MtVernonSq2");
+addTrack(mtVernonSqMap, "1", "E1");
+addTrack(mtVernonSqMap, "2", "E2");
 
 // Greenbelt
-addTrack(greenbeltMap, "1", "Greenbelt1");
-addTrack(greenbeltMap, "2", "Greenbelt2");
+addTrack(greenbeltMap, "1", "E1 ");
+addTrack(greenbeltMap, "2", "E2 ");
 
 // Branch Ave
-addTrack(branchAveMap, "1", "BranchAve1");
-addTrack(branchAveMap, "2", "BranchAve2");
+addTrack(branchAveMap, "1", "F1");
+addTrack(branchAveMap, "2", "F2");
 
 // Largo
-addTrack(largoMap, "1", "Largo1");
-addTrack(largoMap, "2", "Largo2");
+addTrack(largoMap, "1", "G1");
+addTrack(largoMap, "2", "G2");
 
 // Franconia
-addTrack(franconiaMap, "1", "Franconia1");
-addTrack(franconiaMap, "2", "Franconia2");
+addTrack(franconiaMap, "1", "J1");
+addTrack(franconiaMap, "2", "J2");
 
 // Vienna
-addTrack(viennaMap, "1", "Vienna1");
-addTrack(viennaMap, "2", "Vienna2");
+addTrack(viennaMap, "1", "K1");
+addTrack(viennaMap, "2", "K2");
 
 // Ashburn
-addTrack(ashburnMap, "1", "Ashburn1");
-addTrack(ashburnMap, "2", "Ashburn2");
+addTrack(ashburnMap, "1", "N1");
+addTrack(ashburnMap, "2", "N2");
 
 // Grosvenor
-addTrack(grosvenorMap, "1", "Grosvenor1");
-addTrack(grosvenorMap, "2", "Grosvenor2");
+addTrack(grosvenorMap, "1", "A1 ");
+addTrack(grosvenorMap, "2", "A2 ");
 
 // Silver Spring
-addTrack(silverSpringMap, "1", "SilverSpring1");
-addTrack(silverSpringMap, "2", "SilverSpring2");
+addTrack(silverSpringMap, "1", "B1 ");
+addTrack(silverSpringMap, "2", "B2 ");
 
 // Wiehle
-addTrack(wiehleMap, "1", "Wiehle1");
-addTrack(wiehleMap, "2", "Wiehle2");
+addTrack(wiehleMap, "1", "N1 ");
+addTrack(wiehleMap, "2", "N2 ");
 
 T.clearCells();
 

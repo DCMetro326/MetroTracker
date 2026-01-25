@@ -118,7 +118,8 @@ window.YardTools = {
         this.unassigned = []; // clear after showing
     },
 
-    async loadWMATA(yardName, map) {
+    async loadWMATA(yardName, map, options = {}) {
+        const { clear = true } = options;
         try {
             const res = await fetch(
                 "https://gis.wmata.com/proxy/proxy.ashx?https://gispro.wmata.com/RpmSpecialTrains/api/SpcialTrain"
@@ -126,7 +127,9 @@ window.YardTools = {
             const raw = await res.text();
             const data = JSON.parse(raw);
 
-            this.clearCells();
+            if (clear) {
+                this.clearCells();
+            }
 
             const consists =
                 data?.DataTable?.["diffgr:diffgram"]?.DocumentElement?.CurrentConsists;

@@ -22,10 +22,10 @@ for (let t = 16; t <= 21; t++) {
 // Track T1: 4 trains?
 T.buildLeftRow(left, 4, "T1");
 
-// Tracks S1,S2,S3: 3 trains each?
-T.buildLeftRow(left, 3, "S1");
-T.buildLeftRow(left, 3, "S2");
-T.buildLeftRow(left, 3, "S3");
+// Tracks S1,S2,S3: 4 trains each?
+T.buildLeftRow(left, 4, "S1");
+T.buildLeftRow(left, 4, "S2");
+T.buildLeftRow(left, 4, "S3");
 
 
 // ===================================================

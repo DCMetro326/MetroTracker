@@ -15,6 +15,9 @@ for (let t = 1; t <= 2; t++) {
     T.buildLeftRow(left, 4, t.toString());
 }
 
+// Track 3: 3 trains each
+T.buildLeftRow(left, 3, "3");
+
 // Tracks 6-6A: 3 trains each?
 T.buildLeftRow(left, 3, "6");
 T.buildLeftRow(left, 3, "6A");

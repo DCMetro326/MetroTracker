@@ -23,7 +23,7 @@ T.buildLeftRow(left, 1, "P1");
 T.buildLeftRow(left, 1, "P2");
 T.buildLeftRow(left, 4, "S1");
 T.buildLeftRow(left, 4, "S2");
-T.buildLeftRow(left, 1, "T5 (Scrap)");
+T.buildLeftRow(left, 1, "T5");
 
 
 // ===================================================
@@ -49,7 +49,7 @@ for (let r = 16; r >= 1; r--) {
 const map = {
     "1N":"1n","2N":"2n","3N":"3n","4N":"4n","5N":"5n",
     "5AN":"5an","6N":"6n","7N":"7n",
-    "P1":"P1","P2":"P2","S1":"S1","S2":"S2","S2":"T5 (Scrap)"
+    "P1":"P1","P2":"P2","S1":"S1","S2":"S2","T5":"T5 Scrap"
 };
 
 // Numeric tracks 1–20

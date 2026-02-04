@@ -23,7 +23,7 @@ T.buildLeftRow(left, 1, "P1");
 T.buildLeftRow(left, 1, "P2");
 T.buildLeftRow(left, 4, "S1");
 T.buildLeftRow(left, 4, "S2");
-T.buildLeftRow(left, 1, "T5");
+T.buildLeftRow(left, 1, "T5 Scrap");
 
 
 // ===================================================

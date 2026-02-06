@@ -23,8 +23,9 @@ for (let t = 6; t <= 7; t++) {
     T.buildLeftRow(left, 4, t.toString());
 }
 
-// Tracks 7a,8a,9a,10,S1,S2: 4 trains each
+// Tracks 7a,8,8a,9a,10,S1,S2: 4 trains each
 T.buildLeftRow(left, 4, "7a");
+T.buildLeftRow(left, 3, "8");
 T.buildLeftRow(left, 4, "8a");
 T.buildLeftRow(left, 4, "9a");
 T.buildLeftRow(left, 4, "10");
@@ -71,6 +72,7 @@ const map = {
     "6":"6",
     "7":"7",
     "07A":"7a",
+    "8":"8",
     "08A":"8a",
     "09A":"9a",
     "10":"10",

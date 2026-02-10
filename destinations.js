@@ -106,6 +106,11 @@ window.destinations = {
         stationName: "Downtown Largo",
         displayName: "G05"
     },
+    '74': {
+        color: "black",
+        stationName: "New Carrollton Yard",
+        displayName: "D99"
+    },
     '76': {
         color: "black",
         stationName: "Vienna (NP)",

@@ -65,6 +65,7 @@ T.buildRightRow(vienna, 4, "K2");
 // Ashburn
 T.buildRightRow(ashburn, 4, "N1");
 T.buildRightRow(ashburn, 4, "N2");
+T.buildRightRow(ashburn, 4, "71");
 
 // Grosvenor
 T.buildRightRow(grosvenor, 4, "A1 ");
@@ -146,6 +147,7 @@ addTrack(viennaMap, "2", "K2");
 // Ashburn
 addTrack(ashburnMap, "1", "N1");
 addTrack(ashburnMap, "2", "N2");
+addTrack(ashburnMap, "71", "71");
 
 // Grosvenor
 addTrack(grosvenorMap, "1", "A1 ");

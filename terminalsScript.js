@@ -53,11 +53,11 @@ T.buildRightRow(branchAve, 4, "F2");
 // Downtown Largo
 T.buildRightRow(largo, 4, "G1");
 T.buildRightRow(largo, 4, "G2");
-T.buildRightRow(right, 6, "41");
-T.buildRightRow(right, 8, "42");
-T.buildRightRow(right, 5, "43");
-T.buildRightRow(right, 3, "44");
-T.buildRightRow(right, 3, "45");
+T.buildRightRow(largo, 6, "41");
+T.buildRightRow(largo, 8, "42");
+T.buildRightRow(largo, 5, "43");
+T.buildRightRow(largo, 3, "44");
+T.buildRightRow(largo, 3, "45");
 
 // Franconia
 T.buildRightRow(franconia, 4, "J1");

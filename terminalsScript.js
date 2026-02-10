@@ -140,6 +140,11 @@ addTrack(branchAveMap, "2", "F2");
 // Largo
 addTrack(largoMap, "1", "G1");
 addTrack(largoMap, "2", "G2");
+addTrack(largoMap, "41", "41");
+addTrack(largoMap, "42", "42");
+addTrack(largoMap, "43", "43");
+addTrack(largoMap, "44", "44");
+addTrack(largoMap, "45", "45");
 
 // Franconia
 addTrack(franconiaMap, "1", "J1");

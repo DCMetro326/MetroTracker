@@ -75,3 +75,9 @@
     color: blue !important;
     font-weight: bold;
 }
+
+.special-damage {
+    border-color: darkred !important;
+    color: darkred !important;
+    font-weight: bold;
+}

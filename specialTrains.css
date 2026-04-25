@@ -77,7 +77,7 @@
 }
 
 .special-damage {
-    border-color: darkred !important;
-    color: darkred !important;
+    border-color: purple !important;
+    color: purple !important;
     font-weight: bold;
 }

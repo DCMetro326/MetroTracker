@@ -76,6 +76,18 @@
     font-weight: bold;
 }
 
+.special-photosb {
+    border-color: LightSeaGreen !important;
+    color: LightSeaGreen !important;
+    font-weight: bold;
+}
+
+.special-lower {
+    border-color: HotPink !important;
+    color: HotPink !important;
+    font-weight: bold;
+}
+
 .special-damage {
     border-color: #8d27f2 !important;
     color: purple !important;

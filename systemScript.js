@@ -1,18 +1,10 @@
 async function loadSystem() {
     const grid = document.getElementById("systemGrid");
-    const status = document.getElementById("status");
-
-    // Clear anything already on the page
-    grid.innerHTML = "";
 
     try {
         const res = await fetch(
             "https://gis.wmata.com/proxy/proxy.ashx?https://gispro.wmata.com/RpmSpecialTrains/api/SpecialTrain"
         );
-
-        if (!res.ok) {
-            throw new Error(`HTTP error ${res.status}`);
-        }
 
         const raw = await res.text();
         const data = JSON.parse(raw);
@@ -20,47 +12,30 @@ async function loadSystem() {
         const consists =
             data?.DataTable?.["diffgr:diffgram"]?.DocumentElement?.CurrentConsists;
 
-        if (!Array.isArray(consists)) {
-            throw new Error("CurrentConsists data was not found.");
-        }
+        if (!consists) return;
 
-        /*
-         * GROUP BY CONSIST ID
-         *
-         * Unlike the Mainline page, we do NOT filter by LocationName.
-         * This means every train in CurrentConsists will be included.
-         */
+        // GROUP BY CONSIST
         const grouped = {};
 
         for (const item of consists) {
             const id = item.ConsistID;
 
-            if (!id) {
-                continue;
-            }
-
             if (!grouped[id]) {
                 grouped[id] = {
-                    ConsistID: id,
                     DestCode: item.DestCode?.trim() || "",
                     TrainID: "",
                     ConsistLength: Number(item.ConsistLength) || 0,
-                    Cars: [],
-                    LocationName: item.LocationName?.trim() || "",
-                    StateCode: item.StateCode?.trim() || "",
-                    StateName: item.StateName?.trim() || "",
-                    Operator: item.Operator?.trim() || ""
+                    Cars: []
                 };
             }
 
             /*
-             * NEW CARS FORMAT:
+             * Cars format:
              *
              * 7038,7039,7681,7680,7256,7257,7135,7134,101
              *
-             * The final number is the TrainID.
+             * The final three-digit number is the TrainID.
              */
-
             const carNumbers = (item.Cars || "")
                 .split(",")
                 .map(s => s.trim())
@@ -68,32 +43,16 @@ async function loadSystem() {
 
             if (carNumbers.length > 0) {
 
-                /*
-                 * The last number is the three-digit TrainID.
-                 */
-                const possibleTrainID = carNumbers[carNumbers.length - 1];
+                const possibleTrainID =
+                    carNumbers[carNumbers.length - 1];
 
-                /*
-                 * Only treat the last value as TrainID if it looks
-                 * like a 3-digit number.
-                 */
+                // Remove the final three-digit TrainID
                 if (/^\d{3}$/.test(possibleTrainID)) {
                     grouped[id].TrainID = possibleTrainID;
                     carNumbers.pop();
                 }
 
-                /*
-                 * Pair the remaining car numbers.
-                 *
-                 * Example:
-                 *
-                 * 7038,7039,7681,7680
-                 *
-                 * becomes:
-                 *
-                 * 7038-7039
-                 * 7681-7680
-                 */
+                // Pair the cars
                 for (let i = 0; i < carNumbers.length; i += 2) {
                     const first = carNumbers[i];
                     const second = carNumbers[i + 1];
@@ -107,96 +66,55 @@ async function loadSystem() {
             }
         }
 
-        /*
-         * Convert object into an array.
-         */
-        const trains = Object.values(grouped);
+        // SORT BY DESTINATION CODE
+        const sorted = Object.values(grouped).sort((a, b) => {
+            const A = parseInt(a.DestCode) || 0;
+            const B = parseInt(b.DestCode) || 0;
 
-        /*
-         * SORT TRAINS
-         *
-         * First: Destination code
-         * Second: Train ID
-         */
-        trains.sort((a, b) => {
-
-            const destA = parseInt(a.DestCode) || 9999;
-            const destB = parseInt(b.DestCode) || 9999;
-
-            if (destA !== destB) {
-                return destA - destB;
+            if (A !== B) {
+                return A - B;
             }
 
-            const trainA = parseInt(a.TrainID) || 9999;
-            const trainB = parseInt(b.TrainID) || 9999;
+            const trainA = parseInt(a.TrainID) || 0;
+            const trainB = parseInt(b.TrainID) || 0;
 
             return trainA - trainB;
         });
 
-        /*
-         * SPECIAL TRAIN MAP
-         */
+        // SPECIAL TRAIN MAP
         const specialTypes = window.specialTrainTypes || {};
 
-        /*
-         * BUILD EACH TRAIN
-         */
-        for (const train of trains) {
+        // BUILD ROWS
+        sorted.forEach(consist => {
 
-            /*
-             * Number of paired car segments.
-             *
-             * ConsistLength is the number of individual cars,
-             * so divide by two because each cell represents two cars.
-             */
-            let segmentCount = Math.ceil(
-                train.ConsistLength / 2
-            );
+            let segmentCount =
+                Math.ceil(consist.ConsistLength / 2);
 
-            /*
-             * If the actual Cars array has more information,
-             * make sure we don't lose it.
-             */
             segmentCount = Math.max(
                 segmentCount,
-                train.Cars.length
+                consist.Cars.length
             );
 
-            /*
-             * Keep the same 8-column appearance as the Mainline page.
-             */
+            // Keep the same 8-column layout
             segmentCount = Math.min(segmentCount, 8);
 
-            /*
-             * Add blank spaces before the cars so shorter trains
-             * remain aligned to the right.
-             */
+            // Add spacers before shorter trains
             for (let i = 0; i < (8 - segmentCount); i++) {
-
                 const spacer = document.createElement("div");
-
                 spacer.className = "spacer";
-
                 grid.appendChild(spacer);
             }
 
-            /*
-             * CREATE CAR CELLS
-             */
+            // Car cells
             for (let i = 0; i < segmentCount; i++) {
 
-                const cars = train.Cars[i] || "";
+                const cars = consist.Cars[i] || "";
 
                 const cell = document.createElement("div");
-
                 cell.className = "cell";
-
                 cell.textContent = cars;
 
-                /*
-                 * Check the individual car numbers against
-                 * specialTrains.js.
-                 */
+                // Check for special train types
                 const segments = cars
                     .split("-")
                     .map(s => s.trim());
@@ -205,166 +123,75 @@ async function loadSystem() {
 
                 outer:
                 for (const type in specialTypes) {
-
                     for (const num of specialTypes[type]) {
-
                         if (segments.includes(num)) {
                             matchedType = type;
                             break outer;
                         }
-
                     }
                 }
 
-                /*
-                 * Apply special train CSS class.
-                 */
                 if (matchedType) {
-                    cell.classList.add(
-                        `special-${matchedType}`
-                    );
+                    cell.classList.add(`special-${matchedType}`);
                 }
 
                 grid.appendChild(cell);
             }
 
-            /*
-             * DESTINATION / TRAIN INFORMATION
-             */
-            const destCode = String(
-                train.DestCode || ""
-            ).trim();
+            // DESTINATION LABEL
+            const destCode = consist.DestCode || "";
+            const destCodeString = String(destCode).trim();
 
             const destinationInfo =
-                window.destinations?.[destCode];
+                window.destinations?.[destCodeString];
 
-            const label = document.createElement("div");
+            const lbl = document.createElement("div");
+            lbl.className = "train-label";
 
-            label.className = "train-label";
-
-            /*
-             * DESTINATION
-             */
             if (destinationInfo) {
-
-                label.style.color =
-                    destinationInfo.color || "inherit";
 
                 const destCodeSpan =
                     document.createElement("span");
 
                 destCodeSpan.textContent =
-                    destCode;
+                    destCodeString;
 
-                destCodeSpan.style.fontWeight = "bold";
+                lbl.appendChild(destCodeSpan);
 
-                label.appendChild(destCodeSpan);
-
-                const destinationText =
-                    document.createElement("span");
-
-                destinationText.textContent =
+                lbl.innerHTML +=
                     ` - ${destinationInfo.stationName} (${destinationInfo.displayName})`;
 
-                label.appendChild(destinationText);
+                lbl.style.color =
+                    destinationInfo.color;
 
             } else {
 
-                label.style.color = "gray";
+                lbl.textContent =
+                    `${destCodeString} - Unknown Destination`;
 
-                const destinationText =
-                    document.createElement("span");
-
-                destinationText.textContent =
-                    `${destCode || "No Destination"} - Unknown Destination`;
-
-                label.appendChild(destinationText);
+                lbl.style.color = "gray";
             }
 
-            /*
-             * TRAIN ID
-             */
-            if (train.TrainID) {
+            // THREE-DIGIT TRAIN ID
+            if (consist.TrainID) {
 
-                const trainId =
+                const trainIdSpan =
                     document.createElement("span");
 
-                trainId.className = "train-id";
+                trainIdSpan.className = "train-id";
 
-                trainId.textContent =
-                    `Train ${train.TrainID}`;
+                trainIdSpan.textContent =
+                    `T${consist.TrainID}`;
 
-                label.appendChild(trainId);
+                lbl.appendChild(trainIdSpan);
             }
 
-            /*
-             * LOCATION
-             */
-            if (train.LocationName) {
-
-                const location =
-                    document.createElement("span");
-
-                location.className = "location";
-
-                location.textContent =
-                    `Location: ${train.LocationName}`;
-
-                label.appendChild(location);
-            }
-
-            /*
-             * STATE
-             */
-            if (train.StateName) {
-
-                const state =
-                    document.createElement("span");
-
-                state.className = "state";
-
-                state.textContent =
-                    `(${train.StateName})`;
-
-                label.appendChild(state);
-            }
-
-            /*
-             * Add label to the grid.
-             */
-            grid.appendChild(label);
-        }
-
-        /*
-         * UPDATE STATUS
-         */
-        status.textContent =
-            `${trains.length} train${trains.length === 1 ? "" : "s"} loaded`;
+            grid.appendChild(lbl);
+        });
 
     } catch (err) {
-
-        console.error(
-            "Error loading system consists:",
-            err
-        );
-
-        status.textContent =
-            "Unable to load train data.";
-
-        const error =
-            document.createElement("div");
-
-        error.className = "error";
-
-        error.textContent =
-            "Error loading train data. Check the browser console for details.";
-
-        grid.appendChild(error);
+        console.error("Error loading system consists:", err);
     }
 }
 
-
-/*
- * LOAD THE SYSTEM
- */
 loadSystem();

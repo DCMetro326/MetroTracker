@@ -1,139 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>System Trains</title>
 
-    <title>System Trains</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f7f7f7;
+    }
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: #f7f7f7;
-        }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 5px;
-        }
+    #systemGrid {
+        display: grid;
+        grid-template-columns: repeat(8, auto) 40px;
+        column-gap: 2px;
+        row-gap: 4px;
+        justify-content: center;
+    }
 
-        #status {
-            text-align: center;
-            color: #666;
-            font-size: 13px;
-            margin-bottom: 20px;
-        }
+    .cell {
+        width: 70px;
+        height: 28px;
+        border: 2px solid black;
+        box-sizing: border-box;
+        font-size: 12px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+    }
 
-        #systemGrid {
-            display: grid;
-            grid-template-columns: repeat(8, 70px) 40px;
-            column-gap: 2px;
-            row-gap: 4px;
-            justify-content: center;
-        }
+    .spacer {
+        width: 6px;
+        height: 6px;
+        opacity: 0;
+    }
 
-        .cell {
-            width: 70px;
-            height: 28px;
-            border: 2px solid black;
-            box-sizing: border-box;
-            font-size: 12px;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: white;
-        }
+    .train-label {
+        font-size: 14px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        color: inherit;
+        width: 600%;
+        margin-top: 2px;
+        margin-left: 4px;
+        word-wrap: break-word;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
-        .spacer {
-            width: 6px;
-            height: 6px;
-            opacity: 0;
-        }
+    .train-label span {
+        margin-right: 5px;
+        font-weight: bold;
+    }
 
-        /*
-         * Train information is placed after the car cells.
-         */
-        .train-label {
-            grid-column: 1 / -1;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            min-height: 24px;
-            margin: 2px 0 8px 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    .train-id {
+        margin-left: 5px;
+        font-weight: bold;
+    }
+</style>
 
-        .train-id {
-            font-weight: bold;
-            margin-left: 10px;
-        }
-
-        .location {
-            margin-left: 10px;
-            font-size: 12px;
-            font-weight: normal;
-            color: #666;
-        }
-
-        .state {
-            margin-left: 6px;
-            font-size: 12px;
-            font-weight: normal;
-            color: #888;
-        }
-
-        .error {
-            grid-column: 1 / -1;
-            text-align: center;
-            color: #b00020;
-            font-weight: bold;
-            padding: 20px;
-        }
-
-        /*
-         * Make the page usable on smaller screens.
-         */
-        @media (max-width: 750px) {
-            body {
-                padding: 10px;
-            }
-
-            #systemGrid {
-                grid-template-columns: repeat(8, 60px);
-                overflow-x: auto;
-                justify-content: start;
-            }
-
-            .train-label {
-                grid-column: 1 / -1;
-            }
-
-            .cell {
-                width: 60px;
-            }
-        }
-    </style>
-
-    <link rel="stylesheet" href="specialTrains.css">
-    <link rel="icon" href="img/mainline.png">
+<link rel="stylesheet" href="specialTrains.css">
+<link rel="icon" href="img/mainline.png">
 </head>
 
 <body>
 
-    <h2>System Trains</h2>
+<h2>System Trains</h2>
 
-    <div id="status">Loading trains...</div>
+<div id="systemGrid"></div>
 
-    <div id="systemGrid"></div>
-
-    <script src="destinations.js"></script>
-    <script src="specialTrains.js"></script>
-    <script src="systemScript.js"></script>
+<script src="destinations.js"></script>
+<script src="specialTrains.js"></script>
+<script src="systemScript.js"></script>
 
 </body>
 </html>

@@ -7,7 +7,7 @@ async function loadSystem() {
 
     try {
         const res = await fetch(
-            "https://gis.wmata.com/proxy/proxy.ashx?https://gispro.wmata.com/RpmSpecialTrains/api/SpcialTrain"
+            "https://gis.wmata.com/proxy/proxy.ashx?https://gispro.wmata.com/RpmSpecialTrains/api/SpecialTrain"
         );
 
         if (!res.ok) {

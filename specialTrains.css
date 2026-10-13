@@ -93,3 +93,10 @@
     color: purple !important;
     font-weight: bold;
 }
+
+.special-work {
+    background-color: #edce00 !important;
+    border-color: gray !important;
+    color: gray !important;
+    font-weight: bold;
+}

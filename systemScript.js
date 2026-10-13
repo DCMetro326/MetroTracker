@@ -21,6 +21,15 @@ async function loadSystem() {
         
         for (const item of consists) {
             let id = item.ConsistID;
+
+            // Skip ROCS entries with empty Cars
+            if (
+                item.ConsistID === "ROCS" &&
+                !String(item.Cars || "").trim()
+            ) {
+                continue;
+            }
+
         
             // Give each ROCS entry its own row
             if (id === "ROCS") {
@@ -119,17 +128,26 @@ async function loadSystem() {
                 cell.className = "cell";
                 cell.textContent = cars;
 
-                // Check for special train types (case-insensitive)
+                // Check for special train types (case-insensitive,
+                // ignoring punctuation and extra characters)
                 const segments = cars
                     .split("-")
-                    .map(s => s.trim().toUpperCase());
+                    .map(s => s.trim().toUpperCase().replace(/[^A-Z0-9]/g, ""));
                 
                 let matchedType = null;
                 
                 outer:
                 for (const type in specialTypes) {
                     for (const num of specialTypes[type]) {
-                        if (segments.includes(String(num).trim().toUpperCase())) {
+                        const normalizedNum = String(num)
+                            .trim()
+                            .toUpperCase()
+                            .replace(/[^A-Z0-9]/g, "");
+                
+                        if (
+                            normalizedNum &&
+                            segments.some(segment => segment.includes(normalizedNum))
+                        ) {
                             matchedType = type;
                             break outer;
                         }

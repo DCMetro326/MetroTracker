@@ -96,13 +96,14 @@
 
 .special-work {
     background-color: #edce00 !important;
-    border-color: gray !important;
-    color: gray !important;
+    border-color: black !important;
+    color: black !important;
     font-weight: bold;
 }
 
 .special-gv {
     background-color: #039643 !important;
-    color: black !important;
+    border-color: black !important;
+    color: white !important;
     font-weight: bold;
 }

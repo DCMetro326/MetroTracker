@@ -16,9 +16,16 @@ async function loadSystem() {
 
         // GROUP BY CONSIST
         const grouped = {};
-
+        
+        let rocsCounter = 0;
+        
         for (const item of consists) {
-            const id = item.ConsistID;
+            let id = item.ConsistID;
+        
+            // Give each ROCS entry its own row
+            if (id === "ROCS") {
+                id = `ROCS_${rocsCounter++}`;
+            }
 
             if (!grouped[id]) {
                 grouped[id] = {
@@ -29,13 +36,7 @@ async function loadSystem() {
                 };
             }
 
-            /*
-             * Cars format:
-             *
-             * 7038,7039,7681,7680,7256,7257,7135,7134,101
-             *
-             * The final three-digit number is the TrainID.
-             */
+            // Car formatting
             const carNumbers = (item.Cars || "")
                 .split(",")
                 .map(s => s.trim())
@@ -45,9 +46,13 @@ async function loadSystem() {
 
                 const possibleTrainID =
                     carNumbers[carNumbers.length - 1];
-
-                // Remove the final three-digit TrainID
-                if (/^\d{3}$/.test(possibleTrainID)) {
+                
+                // Only remove a final three-digit TrainID
+                // from normal consists, not ROCS entries
+                if (
+                    !String(item.ConsistID).startsWith("ROCS") &&
+                    /^\d{3}$/.test(possibleTrainID)
+                ) {
                     grouped[id].TrainID = possibleTrainID;
                     carNumbers.pop();
                 }

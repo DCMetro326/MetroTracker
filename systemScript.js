@@ -119,17 +119,17 @@ async function loadSystem() {
                 cell.className = "cell";
                 cell.textContent = cars;
 
-                // Check for special train types
+                // Check for special train types (case-insensitive)
                 const segments = cars
                     .split("-")
-                    .map(s => s.trim());
-
+                    .map(s => s.trim().toUpperCase());
+                
                 let matchedType = null;
-
+                
                 outer:
                 for (const type in specialTypes) {
                     for (const num of specialTypes[type]) {
-                        if (segments.includes(num)) {
+                        if (segments.includes(String(num).trim().toUpperCase())) {
                             matchedType = type;
                             break outer;
                         }

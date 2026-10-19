@@ -21,7 +21,7 @@ function createTrainCard(car) {
 
     const image = document.createElement("img");
     image.className = "car-image";
-    image.src = `img/${number}.jpg`;
+    image.src = `3Ks/${number}.jpg`;
     image.alt = `Railcar ${number}`;
     image.loading = "lazy";
 

@@ -10,49 +10,53 @@
         * {
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 16px;
             background: #ffffff;
             color: #000000;
         }
-
+        
         h1 {
             text-align: center;
-            margin: 10px 0 30px;
-            font-size: 32px;
+            margin: 8px 0 24px;
+            font-size: 28px;
         }
-
+        
         h2 {
-            font-size: 26px;
-            margin: 0 0 20px;
+            font-size: 22px;
+            margin: 0 0 16px;
         }
-
+        
+        /* Ten compact cars per row */
         .car-grid {
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(10, minmax(0, 1fr));
+            gap: 8px;
+            width: 100%;
         }
-
+        
+        /* Compact cards with thicker borders */
         .car-card {
-            border: 1px solid #000000;
+            border: 2px solid #000000;
             color: #000000;
             background: #ffffff;
-            padding: 10px;
+            padding: 5px;
             min-width: 0;
             display: flex;
             flex-direction: column;
             text-align: center;
         }
-
-        /* Retired card styling */
+        
+        /* Retired cars */
         .car-card.retired {
             border-color: darkred;
             color: darkred;
         }
-
+        
+        /* Small 4:3 image, no border or rounded corners */
         .car-image {
             display: block;
             width: 100%;
@@ -61,61 +65,76 @@
             border: none;
             border-radius: 0;
         }
-
+        
+        /* Smaller car number */
         .car-number {
-            font-size: 32px;
+            font-size: 20px;
             font-weight: bold;
             line-height: 1.2;
-            margin-top: 12px;
-            margin-bottom: 6px;
+            margin-top: 6px;
+            margin-bottom: 3px;
         }
-
-        /* Fixed space keeps all cards the same height. */
+        
+        /* Reserved information space */
         .car-info {
-            font-size: 16px;
-            line-height: 20px;
-            min-height: 20px;
+            font-size: 11px;
+            line-height: 14px;
+            min-height: 14px;
             overflow-wrap: anywhere;
         }
-
+        
+        /* Retired Cars section */
         .retired-section {
             border-top: 2px solid #000000;
-            margin-top: 40px;
-            padding-top: 24px;
+            margin-top: 28px;
+            padding-top: 18px;
         }
-
+        
         .retired-section[hidden] {
             display: none;
         }
-
-        @media (max-width: 900px) {
+        
+        /* Responsive layout for smaller screens */
+        @media (max-width: 1100px) {
             .car-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
+                grid-template-columns: repeat(8, minmax(0, 1fr));
             }
         }
-
+        
+        @media (max-width: 850px) {
+            .car-grid {
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+            }
+        }
+        
         @media (max-width: 600px) {
             body {
-                padding: 12px;
+                padding: 10px;
             }
-
+        
             .car-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 10px;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 6px;
             }
-
+        
             .car-number {
-                font-size: 27px;
+                font-size: 17px;
             }
-
+        
+            .car-info {
+                font-size: 10px;
+                line-height: 12px;
+                min-height: 12px;
+            }
+        
             h1 {
-                font-size: 28px;
+                font-size: 24px;
             }
         }
-
-        @media (max-width: 360px) {
+        
+        @media (max-width: 400px) {
             .car-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
     </style>
